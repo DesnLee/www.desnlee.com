@@ -1,0 +1,15 @@
+.DS_Store
+.idea/
+archetypes/
+assets/
+config.yaml
+content/
+resources/
+themes/
+data/
+data
+layouts/
+layouts
+static/
+static
+.gitmodules
