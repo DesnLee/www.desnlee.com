@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='URL是什么 Uniform Resource Locator（URL，统一资源定位符），俗称网址，是因特网上标准的资源的地址。由 蒂姆·伯纳斯-李 发明用来作为万维网的地址。
+它使用美国信息交换标准代码的一部分来表示因特网的地址。统一资源定位符的开始，一般会标志着一个计算机网络所使用的网络协议。
+URL的组成 统一资源定位符的标准格式：
+ [ 协议类型 ] :// [ 服务器地址 ] : [ 端口号 ] / [ 资源层级UNIX文件路径 ] [ 文件名 ] ? [ 查询 ] # [ 片段ID ]
+ 一个完整的URL
+ https://www.google.com:443/search?q=hello#botstuff
+ 其中：
+ https 协议，告诉浏览器这次请求使用什么协议交流，常见的有 http、https、file、ftp等。 www.google.com 域名，浏览器会从 DNS 结果找到域名对应服务器 IP 地址，向该服务器发送本次请求。 443 端口号，告诉服务器本次请求的是哪个端口的服务。 /search 路径，告诉服务器本次请求的是哪里的内容。 q=hello 查询参数，每个参数以“&amp;amp;”隔开，告诉服务器本次请求想要的结果是什么 botstuff 片段 ID，浏览器本地处理，将页面直接定位到 ID 为 botstuff 的元素位置。片段 ID 不会跟着请求一起发送给服务器。   总结：'><title>浅析 URL</title>
+
+<link rel='canonical' href='/post/url01/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='浅析 URL'>
+<meta property='og:description' content='URL是什么 Uniform Resource Locator（URL，统一资源定位符），俗称网址，是因特网上标准的资源的地址。由 蒂姆·伯纳斯-李 发明用来作为万维网的地址。
+它使用美国信息交换标准代码的一部分来表示因特网的地址。统一资源定位符的开始，一般会标志着一个计算机网络所使用的网络协议。
+URL的组成 统一资源定位符的标准格式：
+ [ 协议类型 ] :// [ 服务器地址 ] : [ 端口号 ] / [ 资源层级UNIX文件路径 ] [ 文件名 ] ? [ 查询 ] # [ 片段ID ]
+ 一个完整的URL
+ https://www.google.com:443/search?q=hello#botstuff
+ 其中：
+ https 协议，告诉浏览器这次请求使用什么协议交流，常见的有 http、https、file、ftp等。 www.google.com 域名，浏览器会从 DNS 结果找到域名对应服务器 IP 地址，向该服务器发送本次请求。 443 端口号，告诉服务器本次请求的是哪个端口的服务。 /search 路径，告诉服务器本次请求的是哪里的内容。 q=hello 查询参数，每个参数以“&amp;amp;”隔开，告诉服务器本次请求想要的结果是什么 botstuff 片段 ID，浏览器本地处理，将页面直接定位到 ID 为 botstuff 的元素位置。片段 ID 不会跟着请求一起发送给服务器。   总结：'>
+<meta property='og:url' content='/post/url01/'>
+<meta property='og:site_name' content='DesnLee'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='网络' /><meta property='article:tag' content='URL' /><meta property='article:tag' content='HTTP' /><meta property='article:published_time' content='2021-03-19T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-03-19T00:00:00&#43;00:00'/><meta property='og:image' content='/post/src/url.jpg' />
+<meta name="twitter:site" content="@DesnLee">
+    <meta name="twitter:creator" content="@DesnLee"><meta name="twitter:title" content="浅析 URL">
+<meta name="twitter:description" content="URL是什么 Uniform Resource Locator（URL，统一资源定位符），俗称网址，是因特网上标准的资源的地址。由 蒂姆·伯纳斯-李 发明用来作为万维网的地址。
+它使用美国信息交换标准代码的一部分来表示因特网的地址。统一资源定位符的开始，一般会标志着一个计算机网络所使用的网络协议。
+URL的组成 统一资源定位符的标准格式：
+ [ 协议类型 ] :// [ 服务器地址 ] : [ 端口号 ] / [ 资源层级UNIX文件路径 ] [ 文件名 ] ? [ 查询 ] # [ 片段ID ]
+ 一个完整的URL
+ https://www.google.com:443/search?q=hello#botstuff
+ 其中：
+ https 协议，告诉浏览器这次请求使用什么协议交流，常见的有 http、https、file、ftp等。 www.google.com 域名，浏览器会从 DNS 结果找到域名对应服务器 IP 地址，向该服务器发送本次请求。 443 端口号，告诉服务器本次请求的是哪个端口的服务。 /search 路径，告诉服务器本次请求的是哪里的内容。 q=hello 查询参数，每个参数以“&amp;amp;”隔开，告诉服务器本次请求想要的结果是什么 botstuff 片段 ID，浏览器本地处理，将页面直接定位到 ID 为 botstuff 的元素位置。片段 ID 不会跟着请求一起发送给服务器。   总结："><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/post/src/url.jpg' />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_huf8d8793edf8af3e588b4b4564e206141_16354_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🇨🇳</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="/">DesnLee</a></h1>
+        <h2 class="site-description">脆弱的人才会四处游说自己的不幸，坚强的人只会不动声色地愈渐强大。这里是 DesnLee 的前端博客，欢迎你的来访！</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-3d-cube-sphere" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M6 17.6l-2 -1.1v-2.5" />
+    <path d="M4 10v-2.5l2 -1.1" />
+    <path d="M10 4.1l2 -1.1l2 1.1" />
+    <path d="M18 6.4l2 1.1v2.5" />
+    <path d="M20 14v2.5l-2 1.12" />
+    <path d="M14 19.9l-2 1.1l-2 -1.1" />
+    <line x1="12" y1="12" x2="14" y2="10.9" />
+    <line x1="18" y1="8.6" x2="20" y2="7.5" />
+    <line x1="12" y1="12" x2="12" y2="14.5" />
+    <line x1="12" y1="18.5" x2="12" y2="21" />
+    <path d="M12 12l-2 -1.12" />
+    <line x1="6" y1="8.6" x2="4" y2="7.5" />
+</svg>
+                
+                <span>Categories</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>Dark Mode</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="/" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/post/url01/">
+                
+                    <img src="/post/src/url.jpg" loading="lazy" alt="Featured image of post 浅析 URL" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/network/" style="background-color: #7885f6; color: #fff;">
+                Network
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/url01/">浅析 URL</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Mar 19, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="url是什么">URL是什么</h1>
+<p><strong>Uniform Resource Locator</strong>（<em>URL，统一资源定位符</em>），俗称网址，是因特网上标准的资源的地址。由 <strong>蒂姆·伯纳斯-李</strong> 发明用来作为万维网的地址。</p>
+<p>它使用美国信息交换标准代码的一部分来表示因特网的地址。统一资源定位符的开始，一般会标志着一个计算机网络所使用的网络协议。</p>
+<h1 id="url的组成">URL的组成</h1>
+<p>统一资源定位符的标准格式：</p>
+<blockquote>
+<p>[ 协议类型 ] :// [ 服务器地址 ] : [ 端口号 ] / [ 资源层级UNIX文件路径 ] [ 文件名 ] ? [ 查询 ] # [ 片段ID ]</p>
+</blockquote>
+<p><strong>一个完整的URL</strong></p>
+<blockquote>
+<p><a href="https://www.google.com:443/search?q=hello#botstuff">https://www.google.com:443/search?q=hello#botstuff</a></p>
+</blockquote>
+<p>其中：</p>
+<ul>
+<li><strong><code>https</code></strong>  协议，告诉浏览器这次请求使用什么协议交流，常见的有 http、https、file、ftp等。</li>
+<li><strong><code>www.google.com</code></strong>  域名，浏览器会从 DNS 结果找到域名对应服务器 IP 地址，向该服务器发送本次请求。</li>
+<li><strong><code>443</code></strong>  端口号，告诉服务器本次请求的是哪个端口的服务。</li>
+<li><strong><code>/search</code></strong>  路径，告诉服务器本次请求的是哪里的内容。</li>
+<li><strong><code>q=hello</code></strong>  查询参数，每个参数以“&amp;”隔开，告诉服务器本次请求想要的结果是什么</li>
+<li><strong><code>botstuff</code></strong>  片段 ID，浏览器本地处理，将页面直接定位到 ID 为 botstuff 的元素位置。片段 ID 不会跟着请求一起发送给服务器。</li>
+</ul>
+<blockquote>
+<p><strong>总结：</strong></p>
+<ul>
+<li>协议是告诉浏览器怎么发请求</li>
+<li>域名/IP地址是告诉浏览器找谁请求</li>
+<li>端口号是告诉请求的对象我要请求哪个服务</li>
+<li>路径是告诉请求的对象我要请求该端口下什么位置的内容</li>
+<li>查询参数是告诉请求的对象我对查询结果的限制条件是什么</li>
+</ul>
+</blockquote>
+<h1 id="那么dns是什么">那么DNS是什么</h1>
+<p><strong>Domain Name System</strong>（<em>DNS，域名系统</em>），是互联网的一项服务。它是一个将域名和IP地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。</p>
+<p>通俗来讲，DNS 就像以前的 114 查询台，DNS 存储了很多的域名和 IP 的映射表，我们在浏览器输入的域名，浏览器并不知道他需要访问哪一台设备，所以需要一个 DNS 服务器来告诉浏览器这个域名对应的设备 IP，浏览器获取到设备 IP 后通过 IP 去访问对应的主机。</p>
+<h1 id="如何查询域名对应的ip">如何查询域名对应的IP</h1>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ nslookup 域名 DNS服务器地址
+</code></pre></div><p>使用 nslookup 命令，可以看到域名对应的 IP 地址，不加 DNS 服务器地址则是向默认 DNS 服务器查询，加上的话是向指定的 DNS 服务器查询。</p>
+<h1 id="什么是ip">什么是IP</h1>
+<p><strong>IP Address</strong>，是网际协议（Internet Protocol）中用于标识发送或接收数据报的设备的一串数字。</p>
+<p>当设备连接网络，设备将被分配一个 IP 地址，用作标识。通过 IP 地址，设备间可以互相通讯，如果没有 IP 地址，我们将无法知道哪个设备是发送方，无法知道哪个是接收方。IP 地址有两个主要功能：<strong>标识设备或网络</strong> 和 <strong>寻址（location addressing）</strong>。</p>
+<p>IP 地址分为 IPv4 和IPv6 两类：</p>
+<ul>
+<li>IPv4 由十进制数字组成，如 <code>192.168.0.1</code></li>
+<li>IPv6 由十六进制数组成，如 <code>2001:db8:0:1234:0:567:8:1</code></li>
+</ul>
+<p>IP 地址有两个主要的功能：</p>
+<ul>
+<li><strong>标识主机：</strong> 更具体地说，标识其网络接口，并且提供主机在网络中的位置。</li>
+<li><strong>网络寻址：</strong> 该功能是将 数据报 从一个网络模块 送到 目的地。在发送的整个过程，IP地址（address）充当着目的地的位置，域名（name）意味着我们要找什么，路由（route）代表着如何到达目的地的这个过程。每个 IP 数据包的标头包含了发送主机的 IP 地址和目的主机的 IP 地址。</li>
+</ul>
+<h1 id="ping是什么">Ping是什么</h1>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ ping 域名
+</code></pre></div><p>Ping 是一种计算机网络工具，可以用来测试数据包能否透过 IP 协议到达特定主机。Ping 的运作原理是向目标主机传出一个 ICMP 的请求回显数据包，并等待接收回显回应数据包。程序会按时间和成功响应的次数估算丢失数据包率（丢包率）和数据包往返时间（网络时延，Round-trip delay time）。</p>
+<h1 id="域名">域名</h1>
+<p><strong>网域名称</strong>（Domain Name），简称域名、网域，是由一串用点分隔的字符组成的互联网上某一台计算机或计算机组的名称，用于在数据传输时标识计算机的电子方位。</p>
+<p>域名可以说是一个 IP 地址的代称或别名，目的是为了便于记忆。例如 <code>wikipedia.org</code> 是一个域名，人们可以直接访问 <code>wikipedia.org</code> 来代替 IP 地址，然后域名系统 DNS 就会将它转化成便于机器识别的IP地址。这样，人们只需要记忆 <code>wikipedia.org</code> 这一串带有特殊含义的字符，而不需要记忆没有含义的数字。</p>
+<p>域名的核心是<strong>域名系统</strong>（Domain Name System，DNS），域名系统中的任何名称都是域名。在域名系统的层次结构中，各种域名都隶属于域名系统根域的下级。</p>
+<ul>
+<li>域名的第一级是顶级域，它包括通用顶级域，例如 <code>.com</code> <code>.net</code> 和 <code>.org</code> 等等</li>
+<li>顶级域名下一层是二级域名，例如 <code>baidu.com</code>， <code>github.io</code> 等等</li>
+<li>二级域名下面是三级域名，例如 <code>tieba.baidu.com</code> ， <code>username.github.io</code> 等等</li>
+<li>顶级域名的管理服务由对应的域名注册管理机构（域名注册局）负责，注册服务通常由域名注册商负责。</li>
+</ul>
+<p> </p>
+<blockquote>
+<p><em><strong>资料来源：饥人谷、WikiPedia</strong></em></p>
+</blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E7%BD%91%E7%BB%9C/">网络</a>
+        
+            <a href="/tags/url/">URL</a>
+        
+            <a href="/tags/http/">HTTP</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3&#43;Aro6EYUG4&#43;cU&#43;KJWu/X"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"integrity="sha384-g7c&#43;Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI&#43;sEnkvrMWph2EDg4"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC&#43;Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 DesnLee
+    </section>
+    
+    <section class="powerby">
+        
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">浙ICP备2021009729号</a> <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.3.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

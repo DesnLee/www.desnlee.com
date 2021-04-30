@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>对象 on DesnLee</title>
+    <link>/tags/%E5%AF%B9%E8%B1%A1/</link>
+    <description>Recent content in 对象 on DesnLee</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 03 Apr 2021 18:00:00 +0000</lastBuildDate><atom:link href="/tags/%E5%AF%B9%E8%B1%A1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JavaScript对象</title>
+      <link>/post/javascript05/</link>
+      <pubDate>Sat, 03 Apr 2021 18:00:00 +0000</pubDate>
+      
+      <guid>/post/javascript05/</guid>
+      <description>JavaScript对象 JavaScript对象是七种数据类型中唯一一种复杂类型。
+ 是无序的数据集合 是键值对的集合  声明对象的写法 let obj = { &amp;#39;name&amp;#39;: &amp;#39;frank&amp;#39;, &amp;#39;age&amp;#39;: 18 } let obj = new Object({ &amp;#39;name&amp;#39;: &amp;#39;frank&amp;#39;}) 注意：
+ 键名是字符串，不是标识符，可以包含任意字符 引号可以省略，省略之后就只能写标识符 就算省略了引号，键名也还是字符串  变量做属性名 写法
+let p1 = &amp;#39;name&amp;#39; let obj = {[p1]:&amp;#39;frank&amp;#39;} //属性名为&amp;#39;name&amp;#39; 对比
+ 不加 [] 的属性名会自动变成字符串 加了 [] 则会当作变量，先求值再变字符串 值如果不是字符串，则会自动变成字符串  对象的增删改查 删除属性 delete obj.xxx delete obj[&amp;#39;xxx&amp;#39;] //可删除 obj 的 xxx 属性（键和值）  obj.xxx = undefined //让 obj 的 xxx 属性值为 undefined，键还在 确认对象是否存在某个属性</description>
+    </item>
+    
+  </channel>
+</rss>

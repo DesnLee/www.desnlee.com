@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>层叠 on DesnLee</title>
+    <link>/tags/%E5%B1%82%E5%8F%A0/</link>
+    <description>Recent content in 层叠 on DesnLee</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 18 Mar 2021 12:00:00 +0000</lastBuildDate><atom:link href="/tags/%E5%B1%82%E5%8F%A0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CSS基础概述</title>
+      <link>/post/css01/</link>
+      <pubDate>Thu, 18 Mar 2021 12:00:00 +0000</pubDate>
+      
+      <guid>/post/css01/</guid>
+      <description>CSS是什么 层叠样式表（Cascading Style Sheets，简称：CSS），是一种用来为结构化文档（如HTML文档或XML应用）添加样式（字体、间距和颜色等）的计算机语言，由W3C定义和维护。CSS不能单独使用，必须与HTML或XML一起协同工作，为HTML或XML起装饰作用。
+CSS最重要的目标是将文件的内容与它的显示分隔开来。在CSS出现前，几乎所有的HTML文件内都包含文件显示的信息，必须在HTML文件内列出，有时重复列出。CSS使作者可以将这些信息中的大部分隔离出来，简化HTML文件，这些信息被放在一个辅助的，用CSS语言写的文件中。HTML文件中只包含结构和内容的信息，CSS文件中只包含样式的信息。
+CSS的历史  CSS1： 1994年，哈肯·维姆·莱和伯特·波斯合作设计CSS。他们在1994年首次在芝加哥的一次会议上第一次展示了CSS的建议。 CSS2-2.1： 1998年5月，W3C发表了CSS2，其中包括新的内容如： 绝对的、相对的和固定的定比特素、媒体型的概念、 双向文件和一个新的字体。 CSS3： CSS3标准已部分公布，但仍未全部制订完毕，还会有其它新内容继续加入。W3C网站上有专页展示CSS3发展的进展。CSS3分成了不同类别，称为 modules 。而每一个 modules 都有于CSS2中额外增加的功能，以及向后兼容。  CSS的语法内容 CSS由多组 规则 组成。每个规则由 选择器（selector）、属性（property） 和 值（value） 组成：
+ 选择器（Selector）： 多个选择器可以半角逗号 , 隔开。 属性（property）： CSS1、CSS2、CSS3规定了许多的属性，目的在控制选择器的样式。 值（value）： 指属性接受的设置值，多个关键字时大都以空格隔开。  属性和值之间用半角冒号 : 隔开，属性和值合称为 特性。多个特性间用 ; 隔开，最后用 { } 括起来。
+示例：
+p/*选择器*/{ font-size/*属性*/: 110%;/*值*/ font-size: 110%; } CSS的层叠指的是什么？  样式层叠： 可以多次对同一选择器进行样式声明。 选择器层叠： 可以用不同选择器对同一个元素进行样式声明。 文件层叠： 可以用多个文件进行层叠。  文档流 Normal Flow，正常流动方向。文档流方向为从左到右，从上到下。
+  块级元素（block） 总是占据水平方向上所有的空间（能有多大就多大），多个块元素从上到下流动。</description>
+    </item>
+    
+  </channel>
+</rss>
