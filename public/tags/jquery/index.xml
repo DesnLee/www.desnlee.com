@@ -6,16 +6,7 @@
     <description>Recent content in jQuery on DesnLee</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 30 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/jquery/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>DOM 事件模型</title>
-      <link>/post/dom01/</link>
-      <pubDate>Fri, 30 Apr 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/post/dom01/</guid>
-      <description></description>
-    </item>
-    
+    <lastBuildDate>Thu, 29 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/jquery/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>jQuery 常用操作手册</title>
       <link>/post/jquery01/</link>
