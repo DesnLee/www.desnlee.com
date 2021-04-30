@@ -6,16 +6,23 @@
     <description>Recent content in JavaScript on DesnLee</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 01 May 2021 02:00:00 +0000</lastBuildDate><atom:link href="/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 30 Apr 2021 02:00:00 +0000</lastBuildDate><atom:link href="/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>DOM 事件与事件委托</title>
       <link>/post/dom01/</link>
-      <pubDate>Sat, 01 May 2021 02:00:00 +0000</pubDate>
+      <pubDate>Fri, 30 Apr 2021 02:00:00 +0000</pubDate>
       
       <guid>/post/dom01/</guid>
-      <description>DOM 事件 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-v HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。</description>
+      <description>什么是 DOM 事件 文档对象模型 （Document Object Model） 是 HTML 和 XML 文档的编程接口。
+它提供了对文档的结构化的表述，并定义了一种方式可以使从程序中对该结构进行访问，从而改变文档的结构，样式和内容。DOM 将文档解析为一个由节点和对象（包含属性和方法的对象）组成的结构集合。
+文档对象模型（DOM）提供了对同一份文档的另一种表现，存储和操作的方式。 DOM 是 web 页面的完全的面向对象表述，它能够使用如 JavaScript 等脚本语言进行修改。
+而事件是 JavaScript 与 HTML 交互的基础。要实现用户与页面的交互，先要通过 DOM 接口访问元素，再对目标元素绑定特定的事件、设置事件处理函数，然后用户触发事件，事件处理函数执行，产生交互效果。
+DOM 事件模型和事件流 事件流又称为事件传播，描述的是从页面中接收事件的顺序。当一个事件发生后，会在子元素和父元素之间传播（propagation）。这种传播分成三个阶段。
+ 事件捕获阶段（capturing phase）： 事件从 window 对象自上而下向目标节点传播的阶段； 处于目标阶段（target phase）： 真正的目标节点正在处理事件的阶段； 事件冒泡阶段（bubbling phase）： 事件从目标节点自下而上向 window 对象传播的阶段。  在DOM2级事件流中，当我们点击下面的代码片段中的 div 元素后，在事件捕获阶段从上到下传播
+ window &amp;ndash;&amp;gt; document -&amp;gt; html -&amp;gt; body &amp;ndash;&amp;gt; 目标
+ 而事件冒泡的流程刚好是事件捕获的逆过程。
+&amp;lt;html&amp;gt; &amp;lt;body&amp;gt; &amp;lt;div&amp;gt; 点我 &amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 下面来具体看看事件捕获和事件冒泡。
+事件捕获 Netscape 提出的事件流模型称为事件捕获。</description>
     </item>
     
     <item>

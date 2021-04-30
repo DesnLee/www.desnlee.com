@@ -1,24 +1,45 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='DOM 事件 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-v HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。'><title>DOM 事件与事件委托</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='什么是 DOM 事件 文档对象模型 （Document Object Model） 是 HTML 和 XML 文档的编程接口。
+它提供了对文档的结构化的表述，并定义了一种方式可以使从程序中对该结构进行访问，从而改变文档的结构，样式和内容。DOM 将文档解析为一个由节点和对象（包含属性和方法的对象）组成的结构集合。
+文档对象模型（DOM）提供了对同一份文档的另一种表现，存储和操作的方式。 DOM 是 web 页面的完全的面向对象表述，它能够使用如 JavaScript 等脚本语言进行修改。
+而事件是 JavaScript 与 HTML 交互的基础。要实现用户与页面的交互，先要通过 DOM 接口访问元素，再对目标元素绑定特定的事件、设置事件处理函数，然后用户触发事件，事件处理函数执行，产生交互效果。
+DOM 事件模型和事件流 事件流又称为事件传播，描述的是从页面中接收事件的顺序。当一个事件发生后，会在子元素和父元素之间传播（propagation）。这种传播分成三个阶段。
+ 事件捕获阶段（capturing phase）： 事件从 window 对象自上而下向目标节点传播的阶段； 处于目标阶段（target phase）： 真正的目标节点正在处理事件的阶段； 事件冒泡阶段（bubbling phase）： 事件从目标节点自下而上向 window 对象传播的阶段。  在DOM2级事件流中，当我们点击下面的代码片段中的 div 元素后，在事件捕获阶段从上到下传播
+ window &amp;ndash;&amp;gt; document -&amp;gt; html -&amp;gt; body &amp;ndash;&amp;gt; 目标
+ 而事件冒泡的流程刚好是事件捕获的逆过程。
+&amp;lt;html&amp;gt; &amp;lt;body&amp;gt; &amp;lt;div&amp;gt; 点我 &amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 下面来具体看看事件捕获和事件冒泡。
+事件捕获 Netscape 提出的事件流模型称为事件捕获。'><title>DOM 事件与事件委托</title>
 
 <link rel='canonical' href='/post/dom01/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='DOM 事件与事件委托'>
-<meta property='og:description' content='DOM 事件 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-v HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。'>
+<meta property='og:description' content='什么是 DOM 事件 文档对象模型 （Document Object Model） 是 HTML 和 XML 文档的编程接口。
+它提供了对文档的结构化的表述，并定义了一种方式可以使从程序中对该结构进行访问，从而改变文档的结构，样式和内容。DOM 将文档解析为一个由节点和对象（包含属性和方法的对象）组成的结构集合。
+文档对象模型（DOM）提供了对同一份文档的另一种表现，存储和操作的方式。 DOM 是 web 页面的完全的面向对象表述，它能够使用如 JavaScript 等脚本语言进行修改。
+而事件是 JavaScript 与 HTML 交互的基础。要实现用户与页面的交互，先要通过 DOM 接口访问元素，再对目标元素绑定特定的事件、设置事件处理函数，然后用户触发事件，事件处理函数执行，产生交互效果。
+DOM 事件模型和事件流 事件流又称为事件传播，描述的是从页面中接收事件的顺序。当一个事件发生后，会在子元素和父元素之间传播（propagation）。这种传播分成三个阶段。
+ 事件捕获阶段（capturing phase）： 事件从 window 对象自上而下向目标节点传播的阶段； 处于目标阶段（target phase）： 真正的目标节点正在处理事件的阶段； 事件冒泡阶段（bubbling phase）： 事件从目标节点自下而上向 window 对象传播的阶段。  在DOM2级事件流中，当我们点击下面的代码片段中的 div 元素后，在事件捕获阶段从上到下传播
+ window &amp;ndash;&amp;gt; document -&amp;gt; html -&amp;gt; body &amp;ndash;&amp;gt; 目标
+ 而事件冒泡的流程刚好是事件捕获的逆过程。
+&amp;lt;html&amp;gt; &amp;lt;body&amp;gt; &amp;lt;div&amp;gt; 点我 &amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 下面来具体看看事件捕获和事件冒泡。
+事件捕获 Netscape 提出的事件流模型称为事件捕获。'>
 <meta property='og:url' content='/post/dom01/'>
 <meta property='og:site_name' content='DesnLee'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='DOM' /><meta property='article:tag' content='事件' /><meta property='article:tag' content='HTML' /><meta property='article:tag' content='JavaScript' /><meta property='article:tag' content='JS' /><meta property='article:tag' content='前端' /><meta property='article:published_time' content='2021-05-01T02:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-05-01T02:00:00&#43;00:00'/><meta property='og:image' content='/post/src/dom_1.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='DOM' /><meta property='article:tag' content='事件' /><meta property='article:tag' content='HTML' /><meta property='article:tag' content='JavaScript' /><meta property='article:tag' content='JS' /><meta property='article:tag' content='前端' /><meta property='article:published_time' content='2021-04-30T02:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-04-30T02:00:00&#43;00:00'/><meta property='og:image' content='/post/src/dom_1.jpg' />
 <meta name="twitter:site" content="@DesnLee">
     <meta name="twitter:creator" content="@DesnLee"><meta name="twitter:title" content="DOM 事件与事件委托">
-<meta name="twitter:description" content="DOM 事件 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-v HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="什么是 DOM 事件 文档对象模型 （Document Object Model） 是 HTML 和 XML 文档的编程接口。
+它提供了对文档的结构化的表述，并定义了一种方式可以使从程序中对该结构进行访问，从而改变文档的结构，样式和内容。DOM 将文档解析为一个由节点和对象（包含属性和方法的对象）组成的结构集合。
+文档对象模型（DOM）提供了对同一份文档的另一种表现，存储和操作的方式。 DOM 是 web 页面的完全的面向对象表述，它能够使用如 JavaScript 等脚本语言进行修改。
+而事件是 JavaScript 与 HTML 交互的基础。要实现用户与页面的交互，先要通过 DOM 接口访问元素，再对目标元素绑定特定的事件、设置事件处理函数，然后用户触发事件，事件处理函数执行，产生交互效果。
+DOM 事件模型和事件流 事件流又称为事件传播，描述的是从页面中接收事件的顺序。当一个事件发生后，会在子元素和父元素之间传播（propagation）。这种传播分成三个阶段。
+ 事件捕获阶段（capturing phase）： 事件从 window 对象自上而下向目标节点传播的阶段； 处于目标阶段（target phase）： 真正的目标节点正在处理事件的阶段； 事件冒泡阶段（bubbling phase）： 事件从目标节点自下而上向 window 对象传播的阶段。  在DOM2级事件流中，当我们点击下面的代码片段中的 div 元素后，在事件捕获阶段从上到下传播
+ window &amp;ndash;&amp;gt; document -&amp;gt; html -&amp;gt; body &amp;ndash;&amp;gt; 目标
+ 而事件冒泡的流程刚好是事件捕获的逆过程。
+&amp;lt;html&amp;gt; &amp;lt;body&amp;gt; &amp;lt;div&amp;gt; 点我 &amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 下面来具体看看事件捕获和事件冒泡。
+事件捕获 Netscape 提出的事件流模型称为事件捕获。"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='/post/src/dom_1.jpg' />
     <link rel="shortcut icon" href="favicon.ico" />
 
@@ -255,39 +276,94 @@ v HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网�
 
 
 
-        <time class="article-time--published">May 01, 2021</time>
+        <time class="article-time--published">Apr 30, 2021</time>
     </footer></div>
 </header>
 
     <section class="article-content">
-    <h1 id="dom-事件">DOM 事件</h1>
-<p>HTML <code>&lt;a&gt;</code> 元素（<em>或称锚元素</em>）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。</p>
-<p>HTML <code>&lt;a&gt;</code> 元素（<em>或称锚元素</em>）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-HTML <code>&lt;a&gt;</code> 元素（<em>或称锚元素</em>）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-HTML <code>&lt;a&gt;</code> 元素（<em>或称锚元素</em>）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-HTML <code>&lt;a&gt;</code> 元素（<em>或称锚元素</em>）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-HTML <code>&lt;a&gt;</code> 元素（<em>或称锚元素</em>）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-HTML <code>&lt;a&gt;</code> 元素（<em>或称锚元素</em>）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。</p>
-<p>v
-HTML <code>&lt;a&gt;</code> 元素（<em>或称锚元素</em>）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-HTML <code>&lt;a&gt;</code> 元素（<em>或称锚元素</em>）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-HTML <code>&lt;a&gt;</code> 元素（<em>或称锚元素</em>）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-HTML <code>&lt;a&gt;</code> 元素（<em>或称锚元素</em>）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-HTML <code>&lt;a&gt;</code> 元素（<em>或称锚元素</em>）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-HTML <code>&lt;a&gt;</code> 元素（<em>或称锚元素</em>）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-HTML <code>&lt;a&gt;</code> 元素（<em>或称锚元素</em>）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-HTML <code>&lt;a&gt;</code> 元素（<em>或称锚元素</em>）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-HTML <code>&lt;a&gt;</code> 元素（<em>或称锚元素</em>）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。HTML <code>&lt;a&gt;</code> 元素（<em>或称锚元素</em>）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-HTML <code>&lt;a&gt;</code> 元素（<em>或称锚元素</em>）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-HTML <code>&lt;a&gt;</code> 元素（<em>或称锚元素</em>）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-HTML <code>&lt;a&gt;</code> 元素（<em>或称锚元素</em>）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-HTML <code>&lt;a&gt;</code> 元素（<em>或称锚元素</em>）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-HTML <code>&lt;a&gt;</code> 元素（<em>或称锚元素</em>）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-HTML <code>&lt;a&gt;</code> 元素（<em>或称锚元素</em>）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
-HTML <code>&lt;a&gt;</code> 元素（<em>或称锚元素</em>）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。</p>
-<p> </p>
+    <h1 id="什么是-dom-事件">什么是 DOM 事件</h1>
+<p><strong>文档对象模型</strong> <em>（Document Object Model）</em> 是 HTML 和 XML 文档的编程接口。</p>
+<p>它提供了对文档的结构化的表述，并定义了一种方式可以使从程序中对该结构进行访问，从而改变文档的结构，样式和内容。DOM 将文档解析为一个由节点和对象（包含属性和方法的对象）组成的结构集合。</p>
+<p>文档对象模型（DOM）提供了对同一份文档的另一种表现，存储和操作的方式。 DOM 是 web 页面的完全的面向对象表述，它能够使用如 JavaScript 等脚本语言进行修改。</p>
+<p>而事件是 JavaScript 与 HTML 交互的基础。要实现用户与页面的交互，先要通过 DOM 接口访问元素，再对目标元素绑定特定的事件、设置事件处理函数，然后用户触发事件，事件处理函数执行，产生交互效果。</p>
+<h1 id="dom-事件模型和事件流">DOM 事件模型和事件流</h1>
+<p>事件流又称为事件传播，描述的是从页面中接收事件的顺序。当一个事件发生后，会在子元素和父元素之间传播（propagation）。这种传播分成三个阶段。</p>
+<ol>
+<li><strong>事件捕获阶段（capturing phase）：</strong> 事件从 <code>window</code> 对象自上而下向目标节点传播的阶段；</li>
+<li><strong>处于目标阶段（target phase）：</strong> 真正的目标节点正在处理事件的阶段；</li>
+<li><strong>事件冒泡阶段（bubbling phase）：</strong> 事件从目标节点自下而上向 <code>window</code> 对象传播的阶段。</li>
+</ol>
+<p>在DOM2级事件流中，当我们点击下面的代码片段中的 <code>div</code> 元素后，在事件捕获阶段从上到下传播</p>
 <blockquote>
-<p><em><strong>资料来源：饥人谷、MDN</strong></em></p>
+<p><strong>window &ndash;&gt; document -&gt; html -&gt; body &ndash;&gt; 目标</strong></p>
+</blockquote>
+<p>而事件冒泡的流程刚好是事件捕获的逆过程。</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span> 点我 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span> 
+</code></pre></div><p>下面来具体看看事件捕获和事件冒泡。</p>
+<h2 id="事件捕获">事件捕获</h2>
+<p>Netscape 提出的事件流模型称为事件捕获。</p>
+<blockquote>
+<p>事件从最不具体的节点开始接收（document），传递至最具体的节点 <!-- raw HTML omitted --> ，和 IE 的冒泡相反， 事件捕获的本意是当事件到达预定目标前捕获它。</p>
+</blockquote>
+<p>当我们点击下面的代码片段中的 <code>div</code> 元素时，单击事件会按照如下顺序传播：</p>
+<p><strong>document &ndash;&gt; html &ndash;&gt; body &ndash;&gt; div</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span> 点我 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span> 
+</code></pre></div><h2 id="事件冒泡">事件冒泡</h2>
+<p>IE的事件流称为事件冒泡。</p>
+<blockquote>
+<p>即：事件由最具体的元素接收(div)，逐级向上传播到不具体的节点(document)。</p>
+</blockquote>
+<p>当我们点击下面的代码片段中的 <code>div</code> 元素时，单击事件会按照如下顺序传播：</p>
+<p><strong>div &ndash;&gt; body &ndash;&gt; html &ndash;&gt; document</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span> 点我 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span> 
+</code></pre></div><p>几乎现代所有的浏览器都支持事件冒泡，不过有一些细微的差别</p>
+<ul>
+<li>IE5.5 和 IE5.5 - 版本的事件冒泡会跳过 html 元素（body 直接到 document）</li>
+<li>IE9、Firefox、Chrome、Safari则一直冒泡到 <code>window</code> 对象。</li>
+</ul>
+<h1 id="事件委托事件代理">事件委托/事件代理</h1>
+<p>传统的事件处理中，需要为每个元素添加事件处理器。而由于事件会在冒泡阶段向上传播到父节点，因此可以把子节点的监听函数定义在父节点上，由父节点的监听函数统一处理多个子元素的事件。这种方法叫做事件的代理（delegation）。</p>
+<p>事件代理的原理用到的就是事件冒泡和目标元素，把事件处理器添加到父元素，等待子元素事件冒泡，并且父元素能够通过 <code>target</code>（IE为 <code>srcElement</code>）判断是哪个子元素，从而做相应处理。</p>
+<h2 id="事件代理的优点">事件代理的优点</h2>
+<h4 id="-减少内存消耗提高性能">&gt; 减少内存消耗，提高性能</h4>
+<p>假设有一个列表，给每个列表项一一都绑定一个函数，那对于内存消耗是非常大的，效率上需要消耗很多性能。而将多个事件处理器减少到一个，因为事件处理器要驻留内存，这样就提高了性能。</p>
+<p>借助事件代理，我们只需要给父容器 <code>ul</code> 绑定方法即可，这样不管点击的是哪一个后代元素，都会根据冒泡传播的传递机制，把容器的绑定的事件触发，然后把对应的方法执行，根据事件源，我们可以知道点击的是谁，从而完成不同的事。</p>
+<h4 id="-动态绑定事件">&gt; 动态绑定事件</h4>
+<p>在很多时候，我们需要通过用户操作动态的增删列表项元素，如果一开始给每个子元素绑定事件，那么在列表发生变化时，就需要重新给新增的元素绑定事件，给即将删去的元素解绑事件，如果用事件代理就会省去很多这样麻烦。</p>
+<h2 id="事件绑定api">事件绑定API</h2>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">//IE 5，冒泡（从小到大）
+</span><span class="c1"></span><span class="nx">div</span><span class="p">.</span><span class="nx">attachEvent</span><span class="p">(</span><span class="sb">`onclick`</span><span class="p">,</span> <span class="nx">fn</span><span class="p">)</span>
+
+<span class="c1">//网景，捕获（从大到小）
+</span><span class="c1"></span><span class="nx">div</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="sb">`onclick`</span><span class="p">,</span> <span class="nx">fn</span><span class="p">)</span>
+
+<span class="c1">//W3C，先捕获再冒泡
+</span><span class="c1"></span><span class="nx">div</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="sb">`click`</span><span class="p">,</span> <span class="nx">fn</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+</code></pre></div><h4 id="-addeventlistener-的第三个参数">&gt; <code>addEventListener</code> 的第三个参数</h4>
+<p>网景 和 微软 曾经的战争还是比较火热的，当时， 网景主张 <strong>捕获</strong> 方式，微软主张 <em>冒泡</em> 方式。后来 W3C 采用折中的方式，平息了战火，制定了统一的标准 —— <strong>先捕获再冒泡</strong>。</p>
+<p>而 <code>addEventListener</code> 的第三个参数就是为冒泡和捕获准备的。
+addEventListener有三个参数：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">element</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){},</span> <span class="nx">useCapture</span><span class="p">)</span>
+
+<span class="c1">//第一个参数是需要绑定的事件
+</span><span class="c1">//第二个参数是触发事件后要执行的函数
+</span><span class="c1">//第三个参数不传或者为 falsy 表示在事件冒泡阶段调用事件处理函数;如果参数为true，则表示在事件捕获阶段调用处理函数。
+</span></code></pre></div><p> </p>
+<blockquote>
+<p><em><strong>资料来源：饥人谷、MDN、<a class="link" href="https://juejin.cn/post/6844903731079675917"  target="_blank" rel="noopener"
+    >DOM事件机制</a></strong></em></p>
 </blockquote>
 
 </section>
