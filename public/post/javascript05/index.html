@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='JavaScript对象 JavaScript对象是七种数据类型中唯一一种复杂类型。
+ 是无序的数据集合 是键值对的集合  声明对象的写法 let obj = { &amp;#39;name&amp;#39;: &amp;#39;frank&amp;#39;, &amp;#39;age&amp;#39;: 18 } let obj = new Object({ &amp;#39;name&amp;#39;: &amp;#39;frank&amp;#39;}) 注意：
+ 键名是字符串，不是标识符，可以包含任意字符 引号可以省略，省略之后就只能写标识符 就算省略了引号，键名也还是字符串  变量做属性名 写法
+let p1 = &amp;#39;name&amp;#39; let obj = {[p1]:&amp;#39;frank&amp;#39;} //属性名为&amp;#39;name&amp;#39; 对比
+ 不加 [] 的属性名会自动变成字符串 加了 [] 则会当作变量，先求值再变字符串 值如果不是字符串，则会自动变成字符串  对象的增删改查 删除属性 delete obj.xxx delete obj[&amp;#39;xxx&amp;#39;] //可删除 obj 的 xxx 属性（键和值）  obj.xxx = undefined //让 obj 的 xxx 属性值为 undefined，键还在 确认对象是否存在某个属性'><title>JavaScript对象</title>
+
+<link rel='canonical' href='/post/javascript05/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='JavaScript对象'>
+<meta property='og:description' content='JavaScript对象 JavaScript对象是七种数据类型中唯一一种复杂类型。
+ 是无序的数据集合 是键值对的集合  声明对象的写法 let obj = { &amp;#39;name&amp;#39;: &amp;#39;frank&amp;#39;, &amp;#39;age&amp;#39;: 18 } let obj = new Object({ &amp;#39;name&amp;#39;: &amp;#39;frank&amp;#39;}) 注意：
+ 键名是字符串，不是标识符，可以包含任意字符 引号可以省略，省略之后就只能写标识符 就算省略了引号，键名也还是字符串  变量做属性名 写法
+let p1 = &amp;#39;name&amp;#39; let obj = {[p1]:&amp;#39;frank&amp;#39;} //属性名为&amp;#39;name&amp;#39; 对比
+ 不加 [] 的属性名会自动变成字符串 加了 [] 则会当作变量，先求值再变字符串 值如果不是字符串，则会自动变成字符串  对象的增删改查 删除属性 delete obj.xxx delete obj[&amp;#39;xxx&amp;#39;] //可删除 obj 的 xxx 属性（键和值）  obj.xxx = undefined //让 obj 的 xxx 属性值为 undefined，键还在 确认对象是否存在某个属性'>
+<meta property='og:url' content='/post/javascript05/'>
+<meta property='og:site_name' content='DesnLee'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='JavaScript' /><meta property='article:tag' content='JS' /><meta property='article:tag' content='对象' /><meta property='article:tag' content='前端' /><meta property='article:tag' content='Object' /><meta property='article:tag' content='原型' /><meta property='article:published_time' content='2021-04-03T18:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-04-03T18:00:00&#43;00:00'/><meta property='og:image' content='/img/opengraph.jpg' />
+<meta name="twitter:site" content="@DesnLee">
+    <meta name="twitter:creator" content="@DesnLee"><meta name="twitter:title" content="JavaScript对象">
+<meta name="twitter:description" content="JavaScript对象 JavaScript对象是七种数据类型中唯一一种复杂类型。
+ 是无序的数据集合 是键值对的集合  声明对象的写法 let obj = { &amp;#39;name&amp;#39;: &amp;#39;frank&amp;#39;, &amp;#39;age&amp;#39;: 18 } let obj = new Object({ &amp;#39;name&amp;#39;: &amp;#39;frank&amp;#39;}) 注意：
+ 键名是字符串，不是标识符，可以包含任意字符 引号可以省略，省略之后就只能写标识符 就算省略了引号，键名也还是字符串  变量做属性名 写法
+let p1 = &amp;#39;name&amp;#39; let obj = {[p1]:&amp;#39;frank&amp;#39;} //属性名为&amp;#39;name&amp;#39; 对比
+ 不加 [] 的属性名会自动变成字符串 加了 [] 则会当作变量，先求值再变字符串 值如果不是字符串，则会自动变成字符串  对象的增删改查 删除属性 delete obj.xxx delete obj[&amp;#39;xxx&amp;#39;] //可删除 obj 的 xxx 属性（键和值）  obj.xxx = undefined //让 obj 的 xxx 属性值为 undefined，键还在 确认对象是否存在某个属性"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/img/opengraph.jpg' />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_huf8d8793edf8af3e588b4b4564e206141_16354_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🇨🇳</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="/">DesnLee</a></h1>
+        <h2 class="site-description">脆弱的人才会四处游说自己的不幸，坚强的人只会不动声色地愈渐强大。这里是 DesnLee 的前端博客，欢迎你的来访！</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-3d-cube-sphere" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M6 17.6l-2 -1.1v-2.5" />
+    <path d="M4 10v-2.5l2 -1.1" />
+    <path d="M10 4.1l2 -1.1l2 1.1" />
+    <path d="M18 6.4l2 1.1v2.5" />
+    <path d="M20 14v2.5l-2 1.12" />
+    <path d="M14 19.9l-2 1.1l-2 -1.1" />
+    <line x1="12" y1="12" x2="14" y2="10.9" />
+    <line x1="18" y1="8.6" x2="20" y2="7.5" />
+    <line x1="12" y1="12" x2="12" y2="14.5" />
+    <line x1="12" y1="18.5" x2="12" y2="21" />
+    <path d="M12 12l-2 -1.12" />
+    <line x1="6" y1="8.6" x2="4" y2="7.5" />
+</svg>
+                
+                <span>Categories</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>Dark Mode</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="/" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/javascript/" style="background-color: #F9A826; color: #fff;">
+                JavaScript
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/javascript05/">JavaScript对象</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Apr 03, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="javascript对象">JavaScript对象</h1>
+<p>JavaScript对象是七种数据类型中唯一一种复杂类型。</p>
+<ul>
+<li>是无序的数据集合</li>
+<li>是键值对的集合</li>
+</ul>
+<h1 id="声明对象的写法">声明对象的写法</h1>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;name&#39;</span><span class="o">:</span> <span class="s1">&#39;frank&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="o">:</span> <span class="mi">18</span> <span class="p">}</span>
+<span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">({</span> <span class="s1">&#39;name&#39;</span><span class="o">:</span> <span class="s1">&#39;frank&#39;</span><span class="p">})</span>
+</code></pre></div><p><strong>注意：</strong></p>
+<ul>
+<li>键名是字符串，不是标识符，可以包含任意字符</li>
+<li>引号可以省略，省略之后就只能写标识符</li>
+<li>就算省略了引号，键名也还是字符串</li>
+</ul>
+<h1 id="变量做属性名">变量做属性名</h1>
+<p><strong>写法</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">p1</span> <span class="o">=</span> <span class="s1">&#39;name&#39;</span>
+<span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{[</span><span class="nx">p1</span><span class="p">]</span><span class="o">:</span><span class="s1">&#39;frank&#39;</span><span class="p">}</span>    <span class="c1">//属性名为&#39;name&#39;
+</span></code></pre></div><p><strong>对比</strong></p>
+<ul>
+<li>不加 <code>[]</code> 的属性名会自动变成字符串</li>
+<li>加了 <code>[]</code> 则会当作变量，先求值再变字符串</li>
+<li>值如果不是字符串，则会自动变成字符串</li>
+</ul>
+<h1 id="对象的增删改查">对象的增删改查</h1>
+<h2 id="删除属性">删除属性</h2>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">delete</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">xxx</span>
+<span class="k">delete</span> <span class="nx">obj</span><span class="p">[</span><span class="s1">&#39;xxx&#39;</span><span class="p">]</span>
+<span class="c1">//可删除 obj 的 xxx 属性（键和值）
+</span><span class="c1"></span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">xxx</span> <span class="o">=</span> <span class="kc">undefined</span>
+<span class="c1">//让 obj 的 xxx 属性值为 undefined，键还在
+</span></code></pre></div><p><strong>确认对象是否存在某个属性</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="s1">&#39;xxx&#39;</span> <span class="k">in</span> <span class="nx">obj</span> <span class="o">===</span> <span class="kc">false</span>
+<span class="c1">//obj 不含 xxx 这个属性
+</span><span class="c1"></span>
+<span class="s1">&#39;xxx&#39;</span> <span class="k">in</span> <span class="nx">obj</span> <span class="o">&amp;&amp;</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">xxx</span> <span class="o">===</span> <span class="kc">undefined</span>
+<span class="c1">//obj 有 xxx 这个属性，但是值为 undefined
+</span><span class="c1"></span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">xxx</span> <span class="o">===</span> <span class="kc">undefined</span>
+<span class="c1">//不能断定 &#39;xxx&#39; 是否为 obj 的属性
+</span><span class="c1">//因为可能属性有值，值为 undefined
+</span></code></pre></div><h2 id="读属性查看">读属性（查看）</h2>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>
+<span class="c1">//查看对象自身有的属性
+</span><span class="c1"></span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>
+<span class="c1">//查看对象自身属性的值
+</span><span class="c1"></span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>
+<span class="c1">//查看对象自身的属性和值
+</span><span class="c1"></span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>
+<span class="c1">//查看对象的共有属性
+</span><span class="c1"></span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">)</span>
+<span class="c1">//查看对象自身有没有某个属性
+</span><span class="c1"></span>
+<span class="nx">obj</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">]</span>  <span class="c1">//查看属性的值，中括号语法
+</span><span class="c1"></span><span class="nx">obj</span><span class="p">.</span><span class="nx">key</span>     <span class="c1">//查看属性的值，点语法
+</span><span class="c1"></span><span class="nx">obj</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span>    <span class="c1">//变量 key，要先求变量的值，再把值变成字符串
+</span></code></pre></div><h2 id="写属性修改或增加">写属性（修改或增加）</h2>
+<h3 id="直接赋值">直接赋值</h3>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;frank&#39;</span><span class="p">}</span>
+<span class="c1">//先创建变量
+</span><span class="c1"></span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;frank&#39;</span>
+<span class="nx">obj</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;frank&#39;</span>
+<span class="nx">obj</span><span class="p">[</span><span class="s1">&#39;na&#39;</span> <span class="o">+</span> <span class="s1">&#39;me&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;frank&#39;</span>
+<span class="c1">//然后赋值，name是字符串，三种写法都可以
+</span><span class="c1"></span>
+<span class="kd">let</span> <span class="nx">key</span> <span class="o">=</span> <span class="s1">&#39;name&#39;</span>
+<span class="nx">obj</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;frank&#39;</span>
+<span class="c1">//也可以先创建一个变量 &#39;name&#39;，再赋值
+</span></code></pre></div><h3 id="批量赋值">批量赋值</h3>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">(</span><span class="nx">obj</span><span class="p">,{</span><span class="nx">p1</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="nx">p2</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span><span class="nx">p3</span><span class="o">:</span><span class="mi">3</span><span class="p">})</span>
+<span class="c1">//给 obj 创建三个属性同时赋值
+</span></code></pre></div><p>无法在自身修改或增加共有属性，直接操作的共有属性会写在自己身上。如果想要修改共有属性，用下面的方法：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span> <span class="o">=</span> <span class="s1">&#39;xxx&#39;</span>
+<span class="c1">//把所有 Object 的隐藏属性 toString 改为 ‘xxx’
+</span></code></pre></div><h1 id="对象的隐藏属性">对象的隐藏属性</h1>
+<p>每一个对象都有一个隐藏属性，这个隐藏属性储存着对象的 <strong>共有属性组成的对象的地址</strong>，这个共有属性组成的对象就是 <strong>原型</strong>。</p>
+<h1 id="原型">原型</h1>
+<p>每个对象都有原型，原型里存着对象的共有属性，<code>obj.__proto__</code> 存着共有属性组成的对象的地址，这个对象里有 <code>toString</code> <code>constructor</code> <code>valueOf</code> 等共有属性。</p>
+<p>对象的原型也是对象，<code>obj = {}</code> 的原型即为所有对象的原型，这个原型包含所有对象的共有属性，是对象的根，对象的根这个原型也有原型，值为 <code>null</code></p>
+<h1 id="原型链">原型链</h1>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">xxx</span><span class="p">)</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;frank&#39;</span>
+<span class="c1">//以 xxx 这个对象作为 obj 的原型创建 obj 对象,然后给 obj 创建name属性并赋值
+</span><span class="c1"></span>
+<span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">xxx</span><span class="p">,{</span>
+    <span class="nx">name</span><span class="o">:</span><span class="p">{</span><span class="nx">value</span><span class="o">:</span><span class="s1">&#39;frank&#39;</span><span class="p">}</span>	
+<span class="p">})</span>
+<span class="c1">//以 xxx 这个对象作为 obj 的原型创建 obj 对象同时增加属性并赋值
+</span></code></pre></div><p>这样创建的 <code>obj</code> 的原型是<code>xxx</code>，而<code>xxx</code> 的原型是对象的原型，这样就形成了一个原型链。</p>
+<h1 id="细节">细节</h1>
+<p>Q：<code>'name' in obj</code> 和 <code>obj.hasOwnProperty('name')</code> 的区别</p>
+<p>A：这两种方法都可以查看 <code>obj</code> 是否含有 <code>'name'</code>属性，返回值为 <code>true</code> 或 <code>false</code>，他们两个区别是 <code>hasOwnProperty</code> 仅仅判断 <code>obj</code>本身的属性是否含有 <code>'name'</code>，而 <code>in</code>也会去对象的原型里去找是否含有该属性。</p>
+<blockquote>
+<p>MDN文档：所有继承了 Object 的对象都会继承到 hasOwnProperty 方法。这个方法可以用来检测一个对象是否含有特定的自身属性；和 in 运算符不同，该方法会 <strong>忽略掉那些从原型链上继承到的属性</strong>。</p>
+</blockquote>
+<p> </p>
+<blockquote>
+<p><em><strong>资料来源：饥人谷、MDN</strong></em></p>
+</blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/javascript/">JavaScript</a>
+        
+            <a href="/tags/js/">JS</a>
+        
+            <a href="/tags/%E5%AF%B9%E8%B1%A1/">对象</a>
+        
+            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+        
+            <a href="/tags/object/">Object</a>
+        
+            <a href="/tags/%E5%8E%9F%E5%9E%8B/">原型</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3&#43;Aro6EYUG4&#43;cU&#43;KJWu/X"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"integrity="sha384-g7c&#43;Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI&#43;sEnkvrMWph2EDg4"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC&#43;Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/post/dom01/">
+        
+        
+            <div class="article-image">
+                <img src="/post/dom01/dom1.6817c76fb83238450c1011d08fdbbf4d_hud97e667648a730b513b43e90f03dd833_30619_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="dom01" 
+                        data-hash="md5-aBfHb7gyOEUMEBHQj9u/TQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">DOM 事件与事件委托</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/jquery01/">
+        
+        
+            <div class="article-image">
+                <img src="/post/jquery01/jquery.cddad3b26f77785bc6f2b8527cfe6588_hu8ecff6ff9b6bcd20ee9d2ea60e2922b7_54313_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="jquery01" 
+                        data-hash="md5-zdrTsm93eFvG8rhSfP5liA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">jQuery 常用操作手册</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/javascript06/">
+        
+        
+            <div class="article-image">
+                <img src="/post/javascript06/js_function.928ed6f88fc7fb39ed4bb984b1147753_hudc705b281e7f3aa7c988f4e75983e055_40234_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="javascript06" 
+                        data-hash="md5-ko7W&#43;I/H&#43;zntS7mEsRR3Uw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JavaScript函数的执行时机</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/javascript04/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JavaScript的变量声明</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/javascript03/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JavaScript的数据类型</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 DesnLee
+    </section>
+    
+    <section class="powerby">
+        
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">浙ICP备2021009729号</a> <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.3.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

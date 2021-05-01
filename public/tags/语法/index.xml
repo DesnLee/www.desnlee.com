@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>语法 on DesnLee</title>
+    <link>/tags/%E8%AF%AD%E6%B3%95/</link>
+    <description>Recent content in 语法 on DesnLee</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 03 Apr 2021 14:00:00 +0000</lastBuildDate><atom:link href="/tags/%E8%AF%AD%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JavaScript的变量声明</title>
+      <link>/post/javascript04/</link>
+      <pubDate>Sat, 03 Apr 2021 14:00:00 +0000</pubDate>
+      
+      <guid>/post/javascript04/</guid>
+      <description>JavaScript的变量声明 var a = 1 let a = 1 const a = 1  var 是过时的，不好用的方式 let 是新的，更合理的方式 const 声明时必须赋值且不能再改   一般用 let 声明变量， const 声明常量
+ let声明  遵循块作用域，即使用范围为 {} 内部 不能重复声明 可以赋值，也可以不赋值 必须先声明，才能使用，否则报错 全局声明的 let 变量，不会变成 window 的属性，而 var 会创建 window 的属性 for 循环配合 let 有奇效  const声明  跟 let 几乎一样 声明时必须赋值，并且不能再改 for 循环不能使用 const， 因为 const 变量的值不能被修改  name 和 `name` 的区别  name 是变量，值可以是任何东西 `name` 是字符串常量，不会改变，只能是 `name`    资料来源：饥人谷</description>
+    </item>
+    
+    <item>
+      <title>JavaScript的基本语法</title>
+      <link>/post/javascript02/</link>
+      <pubDate>Sun, 21 Mar 2021 18:00:00 +0000</pubDate>
+      
+      <guid>/post/javascript02/</guid>
+      <description>表达式与语句 表达式是一组代码的集合，它返回一个值。每一个合法的表达式都能计算成某个值，但从概念上讲，有两种类型的表达式：有副作用的（比如赋值）和单纯计算求值的。
+JavaScript 的表达式类型  算数： 得出一个数字, 例如 3.14159 字符串： 得出一个字符串, 例如, &amp;ldquo;Fred&amp;rdquo; 或 &amp;ldquo;234&amp;rdquo; 逻辑值： 得出 true 或者 false 基本表达式： JavaScript 中基本的关键字和一般表达式 左值表达式： 分配给左值  例如：
+1 + 2 //表达式的值是3  add(1, 2) //表达式的值为函数的返回值（只有函数才有返回值）  console.log //表达式的值为函数本身  console.log(3) //表达式的值是undefined JavaScript的语句 var a = 1 //就是一个语句 两者区别  表达式一般都有值，但语句可能有，也可能没有 语句一般会改变环境（声明、赋值）  注意   JS大小写敏感 只要不是断句的空格，就没有实际意义。可以任意加回车、空格 但是 return 后面不能加回车   标识符的规则  第一个字符，可以是 unicode字母 $ _ 中文 之后的字符可以是数字  if语句 语法 if (表达式) { 语句1; } else { 语句2; }  { }在语句只有一句的时候可以省略</description>
+    </item>
+    
+    <item>
+      <title>CSS基础概述</title>
+      <link>/post/css01/</link>
+      <pubDate>Thu, 18 Mar 2021 12:00:00 +0000</pubDate>
+      
+      <guid>/post/css01/</guid>
+      <description>CSS是什么 层叠样式表（Cascading Style Sheets，简称：CSS），是一种用来为结构化文档（如HTML文档或XML应用）添加样式（字体、间距和颜色等）的计算机语言，由W3C定义和维护。CSS不能单独使用，必须与HTML或XML一起协同工作，为HTML或XML起装饰作用。
+CSS最重要的目标是将文件的内容与它的显示分隔开来。在CSS出现前，几乎所有的HTML文件内都包含文件显示的信息，必须在HTML文件内列出，有时重复列出。CSS使作者可以将这些信息中的大部分隔离出来，简化HTML文件，这些信息被放在一个辅助的，用CSS语言写的文件中。HTML文件中只包含结构和内容的信息，CSS文件中只包含样式的信息。
+CSS的历史  CSS1： 1994年，哈肯·维姆·莱和伯特·波斯合作设计CSS。他们在1994年首次在芝加哥的一次会议上第一次展示了CSS的建议。 CSS2-2.1： 1998年5月，W3C发表了CSS2，其中包括新的内容如： 绝对的、相对的和固定的定比特素、媒体型的概念、 双向文件和一个新的字体。 CSS3： CSS3标准已部分公布，但仍未全部制订完毕，还会有其它新内容继续加入。W3C网站上有专页展示CSS3发展的进展。CSS3分成了不同类别，称为 modules 。而每一个 modules 都有于CSS2中额外增加的功能，以及向后兼容。  CSS的语法内容 CSS由多组 规则 组成。每个规则由 选择器（selector）、属性（property） 和 值（value） 组成：
+ 选择器（Selector）： 多个选择器可以半角逗号 , 隔开。 属性（property）： CSS1、CSS2、CSS3规定了许多的属性，目的在控制选择器的样式。 值（value）： 指属性接受的设置值，多个关键字时大都以空格隔开。  属性和值之间用半角冒号 : 隔开，属性和值合称为 特性。多个特性间用 ; 隔开，最后用 { } 括起来。
+示例：
+p/*选择器*/{ font-size/*属性*/: 110%;/*值*/ font-size: 110%; } CSS的层叠指的是什么？  样式层叠： 可以多次对同一选择器进行样式声明。 选择器层叠： 可以用不同选择器对同一个元素进行样式声明。 文件层叠： 可以用多个文件进行层叠。  文档流 Normal Flow，正常流动方向。文档流方向为从左到右，从上到下。
+  块级元素（block） 总是占据水平方向上所有的空间（能有多大就多大），多个块元素从上到下流动。</description>
+    </item>
+    
+    <item>
+      <title>HTML常用标签</title>
+      <link>/post/html02/</link>
+      <pubDate>Sun, 14 Mar 2021 14:00:00 +0000</pubDate>
+      
+      <guid>/post/html02/</guid>
+      <description>a 标签 HTML &amp;lt;a&amp;gt; 元素（或称锚元素）可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
+&amp;lt;a&amp;gt; 标签的属性  Download (HTML5的属性)： 该属性告诉浏览器是下载该 URL 的文件。如果属性有值，那么此值将在下载保存过程中作为预填充的文件名（如果用户需要，仍然可以更改文件名）。 href： 包含超链接指向的 URL 或 URL 片段。URL 不限于基于 Web（HTTP）的文档，也可以使用浏览器支持的任何协议。 rel： 该属性指定了目标对象到链接对象的关系。该值是空格分隔的列表类型值。 target： 该属性指定在何处显示链接的资源。 取值为标签tab，窗口window，或框架iframe等浏览上下文的名称或其他关键词。  href取值  http协议地址： http://google.com/ https协议地址： https://google.com/ 无协议网址： //google.com/ 此地址会继承当前页面的协议。 绝对路径和相对路径： /a/b/c 或 a/b/c 这个绝对路径的根目录指的是当前服务的根目录。 文件名： index.html 或 ./index.html 当前目录的 index.html 文件。 JavaScript伪协议： javascript:alert(1);  点击执行JS事件。通常达成想要点击 a 标签什么事情都不做的需求，其他任何属性都无法达到。 元素id名： 若 xxx 为某个元素的 id 名，点击 a 标签则跳转到 id=&amp;quot;xxx&amp;quot; 的元素位置，通常用来做锚点。 邮件协议： mailto:abc@qq.com 点击调起邮箱APP向该邮箱发送邮件。 电话协议： tel:13313133131 点击调起电话APP向该电话拨号。  target取值  _blank 在新页面打开链接。 _top 在顶层页面打开链接。通常需要嵌套 &amp;lt;iframe&amp;gt; 才可以体现出来。 _parent 在父级页面打开链接。通常需要嵌套两层 &amp;lt;iframe&amp;gt; 才可以和 _top 区分开来。 _self 在当前页面打开链接。默认属性，如未赋值则默认为 self。 xxx（页面名） 在名为 xxx 的页面打开链接。若无名为 xxx 的页面则创建一个。  img 标签 HTML&amp;lt;img&amp;gt;元素将一份图像嵌入文档。用来发出一个GET请求，获取并展示一个图片。</description>
+    </item>
+    
+  </channel>
+</rss>

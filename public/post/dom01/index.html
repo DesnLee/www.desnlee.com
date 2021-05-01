@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='什么是 DOM 事件 文档对象模型 （Document Object Model） 是 HTML 和 XML 文档的编程接口。
+它提供了对文档的结构化的表述，并定义了一种方式可以使从程序中对该结构进行访问，从而改变文档的结构，样式和内容。DOM 将文档解析为一个由节点和对象（包含属性和方法的对象）组成的结构集合。
+文档对象模型（DOM）提供了对同一份文档的另一种表现，存储和操作的方式。 DOM 是 web 页面的完全的面向对象表述，它能够使用如 JavaScript 等脚本语言进行修改。
+而事件是 JavaScript 与 HTML 交互的基础。要实现用户与页面的交互，先要通过 DOM 接口访问元素，再对目标元素绑定特定的事件、设置事件处理函数，然后用户触发事件，事件处理函数执行，产生交互效果。
+DOM 事件模型和事件流 事件流又称为事件传播，描述的是从页面中接收事件的顺序。当一个事件发生后，会在子元素和父元素之间传播（propagation）。这种传播分成三个阶段。
+ 事件捕获阶段（capturing phase）： 事件从 window 对象自上而下向目标节点传播的阶段； 处于目标阶段（target phase）： 真正的目标节点正在处理事件的阶段； 事件冒泡阶段（bubbling phase）： 事件从目标节点自下而上向 window 对象传播的阶段。   在DOM2级事件流中，当我们点击下面的代码片段中的 div 元素后，在事件捕获阶段从上到下传播
+ window &amp;ndash;&amp;gt; document -&amp;gt; html -&amp;gt; body &amp;ndash;&amp;gt; 目标
+ &amp;lt;html&amp;gt; &amp;lt;body&amp;gt; &amp;lt;div&amp;gt; 点我 &amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 而事件冒泡的流程刚好是事件捕获的逆过程，冒泡和捕获的过程如下图：  DOM 事件流模型'><title>DOM 事件与事件委托</title>
+
+<link rel='canonical' href='/post/dom01/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='DOM 事件与事件委托'>
+<meta property='og:description' content='什么是 DOM 事件 文档对象模型 （Document Object Model） 是 HTML 和 XML 文档的编程接口。
+它提供了对文档的结构化的表述，并定义了一种方式可以使从程序中对该结构进行访问，从而改变文档的结构，样式和内容。DOM 将文档解析为一个由节点和对象（包含属性和方法的对象）组成的结构集合。
+文档对象模型（DOM）提供了对同一份文档的另一种表现，存储和操作的方式。 DOM 是 web 页面的完全的面向对象表述，它能够使用如 JavaScript 等脚本语言进行修改。
+而事件是 JavaScript 与 HTML 交互的基础。要实现用户与页面的交互，先要通过 DOM 接口访问元素，再对目标元素绑定特定的事件、设置事件处理函数，然后用户触发事件，事件处理函数执行，产生交互效果。
+DOM 事件模型和事件流 事件流又称为事件传播，描述的是从页面中接收事件的顺序。当一个事件发生后，会在子元素和父元素之间传播（propagation）。这种传播分成三个阶段。
+ 事件捕获阶段（capturing phase）： 事件从 window 对象自上而下向目标节点传播的阶段； 处于目标阶段（target phase）： 真正的目标节点正在处理事件的阶段； 事件冒泡阶段（bubbling phase）： 事件从目标节点自下而上向 window 对象传播的阶段。   在DOM2级事件流中，当我们点击下面的代码片段中的 div 元素后，在事件捕获阶段从上到下传播
+ window &amp;ndash;&amp;gt; document -&amp;gt; html -&amp;gt; body &amp;ndash;&amp;gt; 目标
+ &amp;lt;html&amp;gt; &amp;lt;body&amp;gt; &amp;lt;div&amp;gt; 点我 &amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 而事件冒泡的流程刚好是事件捕获的逆过程，冒泡和捕获的过程如下图：  DOM 事件流模型'>
+<meta property='og:url' content='/post/dom01/'>
+<meta property='og:site_name' content='DesnLee'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='DOM' /><meta property='article:tag' content='事件' /><meta property='article:tag' content='HTML' /><meta property='article:tag' content='JavaScript' /><meta property='article:tag' content='JS' /><meta property='article:tag' content='前端' /><meta property='article:published_time' content='2021-05-01T02:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-05-01T02:00:00&#43;00:00'/><meta property='og:image' content='/post/dom01/dom1.jpg' />
+<meta name="twitter:site" content="@DesnLee">
+    <meta name="twitter:creator" content="@DesnLee"><meta name="twitter:title" content="DOM 事件与事件委托">
+<meta name="twitter:description" content="什么是 DOM 事件 文档对象模型 （Document Object Model） 是 HTML 和 XML 文档的编程接口。
+它提供了对文档的结构化的表述，并定义了一种方式可以使从程序中对该结构进行访问，从而改变文档的结构，样式和内容。DOM 将文档解析为一个由节点和对象（包含属性和方法的对象）组成的结构集合。
+文档对象模型（DOM）提供了对同一份文档的另一种表现，存储和操作的方式。 DOM 是 web 页面的完全的面向对象表述，它能够使用如 JavaScript 等脚本语言进行修改。
+而事件是 JavaScript 与 HTML 交互的基础。要实现用户与页面的交互，先要通过 DOM 接口访问元素，再对目标元素绑定特定的事件、设置事件处理函数，然后用户触发事件，事件处理函数执行，产生交互效果。
+DOM 事件模型和事件流 事件流又称为事件传播，描述的是从页面中接收事件的顺序。当一个事件发生后，会在子元素和父元素之间传播（propagation）。这种传播分成三个阶段。
+ 事件捕获阶段（capturing phase）： 事件从 window 对象自上而下向目标节点传播的阶段； 处于目标阶段（target phase）： 真正的目标节点正在处理事件的阶段； 事件冒泡阶段（bubbling phase）： 事件从目标节点自下而上向 window 对象传播的阶段。   在DOM2级事件流中，当我们点击下面的代码片段中的 div 元素后，在事件捕获阶段从上到下传播
+ window &amp;ndash;&amp;gt; document -&amp;gt; html -&amp;gt; body &amp;ndash;&amp;gt; 目标
+ &amp;lt;html&amp;gt; &amp;lt;body&amp;gt; &amp;lt;div&amp;gt; 点我 &amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 而事件冒泡的流程刚好是事件捕获的逆过程，冒泡和捕获的过程如下图：  DOM 事件流模型"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/post/dom01/dom1.jpg' />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_huf8d8793edf8af3e588b4b4564e206141_16354_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🇨🇳</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="/">DesnLee</a></h1>
+        <h2 class="site-description">脆弱的人才会四处游说自己的不幸，坚强的人只会不动声色地愈渐强大。这里是 DesnLee 的前端博客，欢迎你的来访！</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-3d-cube-sphere" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M6 17.6l-2 -1.1v-2.5" />
+    <path d="M4 10v-2.5l2 -1.1" />
+    <path d="M10 4.1l2 -1.1l2 1.1" />
+    <path d="M18 6.4l2 1.1v2.5" />
+    <path d="M20 14v2.5l-2 1.12" />
+    <path d="M14 19.9l-2 1.1l-2 -1.1" />
+    <line x1="12" y1="12" x2="14" y2="10.9" />
+    <line x1="18" y1="8.6" x2="20" y2="7.5" />
+    <line x1="12" y1="12" x2="12" y2="14.5" />
+    <line x1="12" y1="18.5" x2="12" y2="21" />
+    <path d="M12 12l-2 -1.12" />
+    <line x1="6" y1="8.6" x2="4" y2="7.5" />
+</svg>
+                
+                <span>Categories</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>Dark Mode</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="/" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/post/dom01/">
+                <img src="/post/dom01/dom1_hud97e667648a730b513b43e90f03dd833_30619_800x0_resize_q75_box.jpg"
+                        srcset="/post/dom01/dom1_hud97e667648a730b513b43e90f03dd833_30619_800x0_resize_q75_box.jpg 800w, /post/dom01/dom1_hud97e667648a730b513b43e90f03dd833_30619_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="406" 
+                        loading="lazy"
+                        alt="Featured image of post DOM 事件与事件委托" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/html/" style="background-color: #ff5500; color: #fff;">
+                HTML
+            </a>
+        
+            <a href="/categories/javascript/" style="background-color: #F9A826; color: #fff;">
+                JavaScript
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/dom01/">DOM 事件与事件委托</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">May 01, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="什么是-dom-事件">什么是 DOM 事件</h1>
+<p><strong>文档对象模型</strong> <em>（Document Object Model）</em> 是 HTML 和 XML 文档的编程接口。</p>
+<p>它提供了对文档的结构化的表述，并定义了一种方式可以使从程序中对该结构进行访问，从而改变文档的结构，样式和内容。DOM 将文档解析为一个由节点和对象（包含属性和方法的对象）组成的结构集合。</p>
+<p>文档对象模型（DOM）提供了对同一份文档的另一种表现，存储和操作的方式。 DOM 是 web 页面的完全的面向对象表述，它能够使用如 JavaScript 等脚本语言进行修改。</p>
+<p>而事件是 JavaScript 与 HTML 交互的基础。要实现用户与页面的交互，先要通过 DOM 接口访问元素，再对目标元素绑定特定的事件、设置事件处理函数，然后用户触发事件，事件处理函数执行，产生交互效果。</p>
+<h1 id="dom-事件模型和事件流">DOM 事件模型和事件流</h1>
+<p>事件流又称为事件传播，描述的是从页面中接收事件的顺序。当一个事件发生后，会在子元素和父元素之间传播（propagation）。这种传播分成三个阶段。</p>
+<ol>
+<li><strong>事件捕获阶段（capturing phase）：</strong> 事件从 <code>window</code> 对象自上而下向目标节点传播的阶段；</li>
+<li><strong>处于目标阶段（target phase）：</strong> 真正的目标节点正在处理事件的阶段；</li>
+<li><strong>事件冒泡阶段（bubbling phase）：</strong> 事件从目标节点自下而上向 <code>window</code> 对象传播的阶段。</li>
+</ol>
+<p> </p>
+<p>在DOM2级事件流中，当我们点击下面的代码片段中的 <code>div</code> 元素后，在事件捕获阶段从上到下传播</p>
+<blockquote>
+<p><strong>window &ndash;&gt; document -&gt; html -&gt; body &ndash;&gt; 目标</strong></p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span> 点我 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span> 
+</code></pre></div><p>而事件冒泡的流程刚好是事件捕获的逆过程，冒泡和捕获的过程如下图：
+<figure style="flex-grow: 92; flex-basis: 221px">
+		<a href="/post/dom01/eventFlow.png" data-size="727x787"><img src="/post/dom01/eventFlow.png"
+				srcset="/post/dom01/eventFlow_hu527447b4fc006ddeabb6aa278759ab3f_84629_480x0_resize_box_2.png 480w, /post/dom01/eventFlow_hu527447b4fc006ddeabb6aa278759ab3f_84629_1024x0_resize_box_2.png 1024w"
+				width="727"
+				height="787"
+				loading="lazy"
+				alt="DOM 事件流模型">
+		</a>
+		
+		<figcaption>DOM 事件流模型</figcaption>
+		
+	</figure></p>
+<p>下面来具体看看事件捕获和事件冒泡。</p>
+<h2 id="事件捕获">事件捕获</h2>
+<p>Netscape 提出的事件流模型称为事件捕获。</p>
+<blockquote>
+<p>事件从最不具体的节点开始接收（document），传递至最具体的节点 <!-- raw HTML omitted --> ，和 IE 的冒泡相反， 事件捕获的本意是当事件到达预定目标前捕获它。</p>
+</blockquote>
+<p>当我们点击下面的代码片段中的 <code>div</code> 元素时，单击事件会按照如下顺序传播：</p>
+<p><strong>document &ndash;&gt; html &ndash;&gt; body &ndash;&gt; div</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span> 点我 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span> 
+</code></pre></div><h2 id="事件冒泡">事件冒泡</h2>
+<p>IE的事件流称为事件冒泡。</p>
+<blockquote>
+<p>即：事件由最具体的元素接收(div)，逐级向上传播到不具体的节点(document)。</p>
+</blockquote>
+<p>当我们点击下面的代码片段中的 <code>div</code> 元素时，单击事件会按照如下顺序传播：</p>
+<p><strong>div &ndash;&gt; body &ndash;&gt; html &ndash;&gt; document</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span> 点我 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span> 
+</code></pre></div><p>几乎现代所有的浏览器都支持事件冒泡，不过有一些细微的差别</p>
+<ul>
+<li>IE5.5 和 IE5.5 - 版本的事件冒泡会跳过 html 元素（body 直接到 document）</li>
+<li>IE9、Firefox、Chrome、Safari则一直冒泡到 <code>window</code> 对象。</li>
+</ul>
+<h1 id="事件委托事件代理">事件委托/事件代理</h1>
+<p>传统的事件处理中，需要为每个元素添加事件处理器。而由于事件会在冒泡阶段向上传播到父节点，因此可以把子节点的监听函数定义在父节点上，由父节点的监听函数统一处理多个子元素的事件。这种方法叫做事件的代理（delegation）。</p>
+<p>事件代理的原理用到的就是事件冒泡和目标元素，把事件处理器添加到父元素，等待子元素事件冒泡，并且父元素能够通过 <code>target</code>（IE为 <code>srcElement</code>）判断是哪个子元素，从而做相应处理。</p>
+<h2 id="事件代理的优点">事件代理的优点</h2>
+<h4 id="-减少内存消耗提高性能">&gt; 减少内存消耗，提高性能</h4>
+<p>假设有一个列表，给每个列表项一一都绑定一个函数，那对于内存消耗是非常大的，效率上需要消耗很多性能。而将多个事件处理器减少到一个，因为事件处理器要驻留内存，这样就提高了性能。</p>
+<p>借助事件代理，我们只需要给父容器 <code>ul</code> 绑定方法即可，这样不管点击的是哪一个后代元素，都会根据冒泡传播的传递机制，把容器的绑定的事件触发，然后把对应的方法执行，根据事件源，我们可以知道点击的是谁，从而完成不同的事。</p>
+<h4 id="-动态绑定事件">&gt; 动态绑定事件</h4>
+<p>在很多时候，我们需要通过用户操作动态的增删列表项元素，如果一开始给每个子元素绑定事件，那么在列表发生变化时，就需要重新给新增的元素绑定事件，给即将删去的元素解绑事件，如果用事件代理就会省去很多这样麻烦。</p>
+<h2 id="事件绑定api">事件绑定API</h2>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">//IE 5，冒泡（从小到大）
+</span><span class="c1"></span><span class="nx">div</span><span class="p">.</span><span class="nx">attachEvent</span><span class="p">(</span><span class="sb">`onclick`</span><span class="p">,</span> <span class="nx">fn</span><span class="p">)</span>
+
+<span class="c1">//网景，捕获（从大到小）
+</span><span class="c1"></span><span class="nx">div</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="sb">`onclick`</span><span class="p">,</span> <span class="nx">fn</span><span class="p">)</span>
+
+<span class="c1">//W3C，先捕获再冒泡
+</span><span class="c1"></span><span class="nx">div</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="sb">`click`</span><span class="p">,</span> <span class="nx">fn</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+</code></pre></div><h4 id="-addeventlistener-的第三个参数">&gt; <code>addEventListener</code> 的第三个参数</h4>
+<p>网景 和 微软 曾经的战争还是比较火热的，当时， 网景主张 <strong>捕获</strong> 方式，微软主张 <em>冒泡</em> 方式。后来 W3C 采用折中的方式，平息了战火，制定了统一的标准 —— <strong>先捕获再冒泡</strong>。</p>
+<p>而 <code>addEventListener</code> 的第三个参数就是为冒泡和捕获准备的。
+addEventListener有三个参数：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">element</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){},</span> <span class="nx">useCapture</span><span class="p">)</span>
+
+<span class="c1">//第一个参数是需要绑定的事件
+</span><span class="c1">//第二个参数是触发事件后要执行的函数
+</span><span class="c1">//第三个参数不传或者为 falsy 表示在事件冒泡阶段调用事件处理函数;如果参数为true，则表示在事件捕获阶段调用处理函数。
+</span></code></pre></div><p> </p>
+<blockquote>
+<p><em><strong>资料来源：饥人谷、MDN、<a class="link" href="https://juejin.cn/post/6844903731079675917"  target="_blank" rel="noopener"
+    >DOM事件机制</a></strong></em></p>
+</blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/dom/">DOM</a>
+        
+            <a href="/tags/%E4%BA%8B%E4%BB%B6/">事件</a>
+        
+            <a href="/tags/html/">HTML</a>
+        
+            <a href="/tags/javascript/">JavaScript</a>
+        
+            <a href="/tags/js/">JS</a>
+        
+            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3&#43;Aro6EYUG4&#43;cU&#43;KJWu/X"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"integrity="sha384-g7c&#43;Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI&#43;sEnkvrMWph2EDg4"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC&#43;Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/post/jquery01/">
+        
+        
+            <div class="article-image">
+                <img src="/post/jquery01/jquery.cddad3b26f77785bc6f2b8527cfe6588_hu8ecff6ff9b6bcd20ee9d2ea60e2922b7_54313_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="jquery01" 
+                        data-hash="md5-zdrTsm93eFvG8rhSfP5liA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">jQuery 常用操作手册</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/javascript06/">
+        
+        
+            <div class="article-image">
+                <img src="/post/javascript06/js_function.928ed6f88fc7fb39ed4bb984b1147753_hudc705b281e7f3aa7c988f4e75983e055_40234_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="javascript06" 
+                        data-hash="md5-ko7W&#43;I/H&#43;zntS7mEsRR3Uw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JavaScript函数的执行时机</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/javascript05/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JavaScript对象</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/javascript04/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JavaScript的变量声明</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/javascript03/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JavaScript的数据类型</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 DesnLee
+    </section>
+    
+    <section class="powerby">
+        
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">浙ICP备2021009729号</a> <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.3.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

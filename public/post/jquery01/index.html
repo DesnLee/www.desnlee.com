@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='jQuery 简介 jQuery 是一套跨浏览器的 JavaScript 库，简化 HTML 与 JavaScript 之间的操作。
+据统计，全世界排名前 100 万的网站，有 76.85% 在使用 jQuery ，远远超过其他库（截止至2021年2月）。 点击查看统计数据 -&amp;gt;
+在 jQuery 诞生前，人们是使用原生 JS 来对 DOM 等一系列做操作的，但 JS 提供的 DOM API 有点反人类。
+因此，经过前端程序员们不断的努力和尝试，发明了现在这套经典的 JavaScript 函数库。
+jQuery 常用操作 关于 jQuery 的全部 API，请查看 jQuery 中文文档，以下仅对常用的操作进行罗列。
+选择网页元素 jQuery 的基本设计思想和主要用法，就是 选择某个网页元素，然后对其进行某种操作。这是它区别于其他 Javascript 库的根本特点。
+使用 jQuery 的第一步，就是一个选择表达式，放进构造函数 jQuery()（简写为$），然后就可以对该元素进行操作了。
+选择表达式可以是 CSS 选择器，也可以是 jQuery 特有的表达式
+$(document) //选择整个文档  $(&amp;#39;#id&amp;#39;) //通过元素的 id 选择元素  $(&amp;#39;div.class&amp;#39;) // 通过 class 属性选择 div 元素  $(&amp;#39;input[name=name]&amp;#39;) // 通过 name 属性选择 input 元素  $(&amp;#39;a:first&amp;#39;) //选择网页中第一个 a 元素  $(&amp;#39;tr:odd&amp;#39;) //选择 tr 的奇数（odd）行  $(&amp;#39;#form :input&amp;#39;) // 选择表单中的 input 元素  $(&amp;#39;div:visible&amp;#39;) //选择可见（visible）的 div 元素  $(&amp;#39;div:gt(2)&amp;#39;) // 选择除了前三个余下的 div 元素，数字为下标  $(&amp;#39;div:animated&amp;#39;) // 选择当前处于动画状态的 div 元素 jQuery 设计思想之二，就是提供各种过滤器对结果集进行筛选进而缩小范围。'><title>jQuery 常用操作手册</title>
+
+<link rel='canonical' href='/post/jquery01/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='jQuery 常用操作手册'>
+<meta property='og:description' content='jQuery 简介 jQuery 是一套跨浏览器的 JavaScript 库，简化 HTML 与 JavaScript 之间的操作。
+据统计，全世界排名前 100 万的网站，有 76.85% 在使用 jQuery ，远远超过其他库（截止至2021年2月）。 点击查看统计数据 -&amp;gt;
+在 jQuery 诞生前，人们是使用原生 JS 来对 DOM 等一系列做操作的，但 JS 提供的 DOM API 有点反人类。
+因此，经过前端程序员们不断的努力和尝试，发明了现在这套经典的 JavaScript 函数库。
+jQuery 常用操作 关于 jQuery 的全部 API，请查看 jQuery 中文文档，以下仅对常用的操作进行罗列。
+选择网页元素 jQuery 的基本设计思想和主要用法，就是 选择某个网页元素，然后对其进行某种操作。这是它区别于其他 Javascript 库的根本特点。
+使用 jQuery 的第一步，就是一个选择表达式，放进构造函数 jQuery()（简写为$），然后就可以对该元素进行操作了。
+选择表达式可以是 CSS 选择器，也可以是 jQuery 特有的表达式
+$(document) //选择整个文档  $(&amp;#39;#id&amp;#39;) //通过元素的 id 选择元素  $(&amp;#39;div.class&amp;#39;) // 通过 class 属性选择 div 元素  $(&amp;#39;input[name=name]&amp;#39;) // 通过 name 属性选择 input 元素  $(&amp;#39;a:first&amp;#39;) //选择网页中第一个 a 元素  $(&amp;#39;tr:odd&amp;#39;) //选择 tr 的奇数（odd）行  $(&amp;#39;#form :input&amp;#39;) // 选择表单中的 input 元素  $(&amp;#39;div:visible&amp;#39;) //选择可见（visible）的 div 元素  $(&amp;#39;div:gt(2)&amp;#39;) // 选择除了前三个余下的 div 元素，数字为下标  $(&amp;#39;div:animated&amp;#39;) // 选择当前处于动画状态的 div 元素 jQuery 设计思想之二，就是提供各种过滤器对结果集进行筛选进而缩小范围。'>
+<meta property='og:url' content='/post/jquery01/'>
+<meta property='og:site_name' content='DesnLee'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='jQuery' /><meta property='article:tag' content='JavaScript' /><meta property='article:tag' content='JS' /><meta property='article:tag' content='前端' /><meta property='article:published_time' content='2021-04-29T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-04-29T00:00:00&#43;00:00'/><meta property='og:image' content='/post/jquery01/jquery.jpg' />
+<meta name="twitter:site" content="@DesnLee">
+    <meta name="twitter:creator" content="@DesnLee"><meta name="twitter:title" content="jQuery 常用操作手册">
+<meta name="twitter:description" content="jQuery 简介 jQuery 是一套跨浏览器的 JavaScript 库，简化 HTML 与 JavaScript 之间的操作。
+据统计，全世界排名前 100 万的网站，有 76.85% 在使用 jQuery ，远远超过其他库（截止至2021年2月）。 点击查看统计数据 -&amp;gt;
+在 jQuery 诞生前，人们是使用原生 JS 来对 DOM 等一系列做操作的，但 JS 提供的 DOM API 有点反人类。
+因此，经过前端程序员们不断的努力和尝试，发明了现在这套经典的 JavaScript 函数库。
+jQuery 常用操作 关于 jQuery 的全部 API，请查看 jQuery 中文文档，以下仅对常用的操作进行罗列。
+选择网页元素 jQuery 的基本设计思想和主要用法，就是 选择某个网页元素，然后对其进行某种操作。这是它区别于其他 Javascript 库的根本特点。
+使用 jQuery 的第一步，就是一个选择表达式，放进构造函数 jQuery()（简写为$），然后就可以对该元素进行操作了。
+选择表达式可以是 CSS 选择器，也可以是 jQuery 特有的表达式
+$(document) //选择整个文档  $(&amp;#39;#id&amp;#39;) //通过元素的 id 选择元素  $(&amp;#39;div.class&amp;#39;) // 通过 class 属性选择 div 元素  $(&amp;#39;input[name=name]&amp;#39;) // 通过 name 属性选择 input 元素  $(&amp;#39;a:first&amp;#39;) //选择网页中第一个 a 元素  $(&amp;#39;tr:odd&amp;#39;) //选择 tr 的奇数（odd）行  $(&amp;#39;#form :input&amp;#39;) // 选择表单中的 input 元素  $(&amp;#39;div:visible&amp;#39;) //选择可见（visible）的 div 元素  $(&amp;#39;div:gt(2)&amp;#39;) // 选择除了前三个余下的 div 元素，数字为下标  $(&amp;#39;div:animated&amp;#39;) // 选择当前处于动画状态的 div 元素 jQuery 设计思想之二，就是提供各种过滤器对结果集进行筛选进而缩小范围。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/post/jquery01/jquery.jpg' />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_huf8d8793edf8af3e588b4b4564e206141_16354_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🇨🇳</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="/">DesnLee</a></h1>
+        <h2 class="site-description">脆弱的人才会四处游说自己的不幸，坚强的人只会不动声色地愈渐强大。这里是 DesnLee 的前端博客，欢迎你的来访！</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-3d-cube-sphere" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M6 17.6l-2 -1.1v-2.5" />
+    <path d="M4 10v-2.5l2 -1.1" />
+    <path d="M10 4.1l2 -1.1l2 1.1" />
+    <path d="M18 6.4l2 1.1v2.5" />
+    <path d="M20 14v2.5l-2 1.12" />
+    <path d="M14 19.9l-2 1.1l-2 -1.1" />
+    <line x1="12" y1="12" x2="14" y2="10.9" />
+    <line x1="18" y1="8.6" x2="20" y2="7.5" />
+    <line x1="12" y1="12" x2="12" y2="14.5" />
+    <line x1="12" y1="18.5" x2="12" y2="21" />
+    <path d="M12 12l-2 -1.12" />
+    <line x1="6" y1="8.6" x2="4" y2="7.5" />
+</svg>
+                
+                <span>Categories</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>Dark Mode</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="/" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/post/jquery01/">
+                <img src="/post/jquery01/jquery_hu8ecff6ff9b6bcd20ee9d2ea60e2922b7_54313_800x0_resize_q75_box.jpg"
+                        srcset="/post/jquery01/jquery_hu8ecff6ff9b6bcd20ee9d2ea60e2922b7_54313_800x0_resize_q75_box.jpg 800w, /post/jquery01/jquery_hu8ecff6ff9b6bcd20ee9d2ea60e2922b7_54313_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="406" 
+                        loading="lazy"
+                        alt="Featured image of post jQuery 常用操作手册" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/javascript/" style="background-color: #F9A826; color: #fff;">
+                JavaScript
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/jquery01/">jQuery 常用操作手册</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Apr 29, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="jquery-简介">jQuery 简介</h1>
+<p>jQuery 是一套跨浏览器的 JavaScript 库，简化 HTML 与 JavaScript 之间的操作。</p>
+<p>据统计，全世界排名前 100 万的网站，有 76.85% 在使用 jQuery ，远远超过其他库（截止至2021年2月）。 <a class="link" href="https://trends.builtwith.com/javascript/jQuery"  target="_blank" rel="noopener"
+    ><strong>点击查看统计数据 -&gt;</strong></a></p>
+<p>在 jQuery 诞生前，人们是使用原生 JS 来对 DOM 等一系列做操作的，但 JS 提供的 DOM API 有点反人类。</p>
+<p>因此，经过前端程序员们不断的努力和尝试，发明了现在这套经典的 JavaScript 函数库。</p>
+<h1 id="jquery-常用操作">jQuery 常用操作</h1>
+<p>关于 jQuery 的全部 API，请查看 <a class="link" href="https://www.jquery123.com"  target="_blank" rel="noopener"
+    ><strong>jQuery 中文文档</strong></a>，以下仅对常用的操作进行罗列。</p>
+<h3 id="选择网页元素">选择网页元素</h3>
+<p>jQuery 的基本设计思想和主要用法，就是 <!-- raw HTML omitted --><strong>选择某个网页元素，然后对其进行某种操作</strong><!-- raw HTML omitted --> 。这是它区别于其他 Javascript 库的根本特点。</p>
+<p>使用 jQuery 的第一步，就是一个选择表达式，放进构造函数 <code>jQuery()</code>（简写为$），然后就可以对该元素进行操作了。</p>
+<p>选择表达式可以是 CSS 选择器，也可以是 jQuery 特有的表达式</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">)</span>  <span class="c1">//选择整个文档
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#id&#39;</span><span class="p">)</span>  <span class="c1">//通过元素的 id 选择元素
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div.class&#39;</span><span class="p">)</span>  <span class="c1">// 通过 class 属性选择 div 元素
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;input[name=name]&#39;</span><span class="p">)</span>  <span class="c1">// 通过 name 属性选择 input 元素
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a:first&#39;</span><span class="p">)</span>  <span class="c1">//选择网页中第一个 a 元素
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;tr:odd&#39;</span><span class="p">)</span>  <span class="c1">//选择 tr 的奇数（odd）行
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#form :input&#39;</span><span class="p">)</span>  <span class="c1">// 选择表单中的 input 元素
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div:visible&#39;</span><span class="p">)</span>  <span class="c1">//选择可见（visible）的 div 元素
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div:gt(2)&#39;</span><span class="p">)</span>  <span class="c1">// 选择除了前三个余下的 div 元素，数字为下标
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div:animated&#39;</span><span class="p">)</span>  <span class="c1">// 选择当前处于动画状态的 div 元素
+</span></code></pre></div><p>jQuery 设计思想之二，就是提供各种过滤器对结果集进行筛选进而缩小范围。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">has</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>  <span class="c1">// 选择包含 p 元素的 div 元素
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">not</span><span class="p">(</span><span class="s1">&#39;.class&#39;</span><span class="p">)</span>  <span class="c1">//选择 class 不为 class 的 div 元素
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">filter</span><span class="p">(</span><span class="s1">&#39;.class&#39;</span><span class="p">)</span>  <span class="c1">//选择 class 为 class 的 div 元素
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">first</span><span class="p">()</span>  <span class="c1">//选择第 1 个 div 元素
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="c1">//选择第 6 个 div 元素，数字为下标
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">next</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>  <span class="c1">//选择 div 元素后面的第一个 p 元素
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">parent</span><span class="p">()</span>  <span class="c1">//选择 div 元素的父元素
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">closest</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">)</span>  <span class="c1">//选择离 div 最近的 form 父元素
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">children</span><span class="p">()</span>  <span class="c1">//选择 div 的子元素
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">siblings</span><span class="p">()</span>  <span class="c1">//选择 div 的兄弟元素
+</span></code></pre></div><h3 id="链式操作">链式操作</h3>
+<p>jQuery 设计思想之三，就是选中网页元素以后，可以对它进行一系列操作，所有操作可以连接在一起，以链条的形式写出来。</p>
+<p>这是 jQuery 最令人称道、最方便的特点。它的原理在于每一步的 jQuery 操作，返回的都是一个 <strong>jQuery 对象</strong>，该对象包含了所有 jQuery 操作，所以不同操作可以连在一起。</p>
+<p>比如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;h3&#39;</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">)</span>
+
+<span class="c1">//在所有的 div 元素中，找到第 3 个 h3 元素，将其内容改为 Hello
+</span></code></pre></div><p>jQuery 还提供了 <code>.end()</code> 方法，使得结果集可以后退一步。该后退指的是选择元素的后退，并非指还原到上一步操作。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;h3&#39;</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">).</span><span class="nx">end</span><span class="p">().</span><span class="nx">eq</span><span class="p">(</span><span class="mi">3</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="sb">`World`</span><span class="p">)</span>
+
+<span class="c1">//在所有的 div 元素中，找到第 3 个 h3 元素，将其内容改为 Hello，然后退回到全部 h3 元素的结果集，选择第 4 个 h3 元素，将其内容改为 World
+</span></code></pre></div><h3 id="取值和赋值">取值和赋值</h3>
+<p>jQuery 设计思想之四，就是使用同一个函数，来完成取值 <code>getter</code> 和赋值 <code>setter</code>，即 <strong>取值器</strong> 与 <strong>赋值器</strong> 合一。到底是取值还是赋值，由函数的参数决定。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">();</span> <span class="c1">//直接调用函数，表示取出 h1 的值
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">);</span> <span class="c1">//给函数传入参数 Hello，表示对 h1 进行赋值
+</span></code></pre></div><p>常见的取值和赋值函数如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">.</span><span class="nx">html</span><span class="p">()</span>  <span class="c1">//取出或设置 html 内容
+</span><span class="c1"></span>    
+<span class="p">.</span><span class="nx">text</span><span class="p">()</span>  <span class="c1">//取出或设置 text 内容
+</span><span class="c1"></span>    
+<span class="p">.</span><span class="nx">attr</span><span class="p">()</span>  <span class="c1">//取出或设置属性的值
+</span><span class="c1"></span>    
+<span class="p">.</span><span class="nx">width</span><span class="p">()</span>  <span class="c1">//取出或设置元素的宽度
+</span><span class="c1"></span>    
+<span class="p">.</span><span class="nx">height</span><span class="p">()</span>  <span class="c1">//取出或设置元素的高度
+</span><span class="c1"></span>    
+<span class="p">.</span><span class="nx">val</span><span class="p">()</span>  <span class="c1">//取出表单元素的值
+</span></code></pre></div><p><strong>需要注意的是</strong></p>
+<blockquote>
+<p>如果结果集包含多个元素，那么赋值的时候，将对其中 <strong>所有</strong> 的元素赋值</p>
+<p>取值的时候，则是只取出 <strong>第一个元素</strong> 的值</p>
+<p><code>.text()</code> 例外，它会得到匹配元素集合中每个元素的合并文本，包括他们的后代</p>
+</blockquote>
+<h3 id="移动">移动</h3>
+<p>jQuery 设计思想之五，就是提供两组方法，来操作元素在网页中的位置移动。</p>
+<p>一组方法是直接移动该元素，另一组方法是移动其他元素，使得目标元素达到我们想要的位置。</p>
+<blockquote>
+<p><em>假定我们选中了一个 <code>div</code> 元素，需要把它移动到 <code>p</code> 元素后面。</em></p>
+</blockquote>
+<ul>
+<li>第一种方法是使用 <code>.insertAfter()</code>，把 <code>div</code> 元素移动 <code>p</code> 元素后面</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">insertAfter</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">))</span>
+</code></pre></div><ul>
+<li>第二种方法是使用 <code>.after()</code>，把 <code>p</code> 元素加到 <code>div</code> 元素前面</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">).</span><span class="nx">after</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">))</span>
+</code></pre></div><p>这两种方法有一个差别，那就是 <strong>返回的元素</strong> 不一样。</p>
+<p>第一种方法返回 <code>div</code> 元素，第二种方法返回 <code>p</code> 元素。可以根据需要，选择到使用哪一种方法。</p>
+<h3 id="复制删除和创建">复制、删除和创建</h3>
+<p>除了元素的位置移动之外，jQuery 还提供其他几种操作元素的重要方法。</p>
+<ul>
+<li>复制元素使用 <code>.clone()</code></li>
+<li>删除元素使用 <code>.remove()</code> 和 <code>.detach()</code> 。两者的区别在于，前者不保留被删除元素的事件，后者保留，有利于重新插入文档时使用。</li>
+<li>清空元素内容（但是不删除该元素）使用 <code>.empty()</code></li>
+</ul>
+<p>创建新元素的方法非常简单，只要把新元素直接传入 jQuery 的构造函数</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;p&gt;Hello World&lt;/p&gt;&#39;</span><span class="p">)</span>
+
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;li&gt;list item&lt;/li&gt;&#39;</span><span class="p">)</span>
+</code></pre></div><h3 id="工具方法">工具方法</h3>
+<p>jQuery 设计思想之六,除了对选中的元素进行操作以外，还提供一些与元素无关的工具方法（utility）。不必选中元素，就可以直接使用这些方法。</p>
+<p>它是定义在 jQuery 构造函数上的方法，即 <code>jQuery.method()</code>，所以可以直接使用。</p>
+<p>而那些操作元素的方法，是定义在 jQuery 构造函数的 prototype 对象上的方法，即 <code>jQuery.prototype.method()</code>，所以必须生成实例（即选中元素）后使用。</p>
+<p>常用的工具方法有以下几种：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span>  <span class="c1">//去除字符串两端的空格
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">()</span>  <span class="c1">//遍历一个数组或对象
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">inArray</span><span class="p">()</span>  <span class="c1">//返回一个值在数组中的索引位置。如果该值不在数组中，则返回-1
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">grep</span><span class="p">()</span>  <span class="c1">//返回数组中符合某种标准的元素
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">()</span>  <span class="c1">//将多个对象，合并到第一个对象
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">makeArray</span><span class="p">()</span>  <span class="c1">//将对象转化为数组
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">type</span><span class="p">()</span>  <span class="c1">//判断对象的类别（函数对象、日期对象、数组对象、正则对象等等）
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">isArray</span><span class="p">()</span>  <span class="c1">//判断某个参数是否为数组
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">isEmptyObject</span><span class="p">()</span>  <span class="c1">//判断某个对象是否为空（不含有任何属性）
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">()</span>  <span class="c1">//判断某个参数是否为函数
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">isPlainObject</span><span class="p">()</span>  <span class="c1">//判断某个参数是否为用&#34;{}&#34;或&#34;new Object&#34;建立的对象
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">support</span><span class="p">()</span>  <span class="c1">//判断浏览器是否支持某个特性
+</span></code></pre></div><h3 id="事件操作">事件操作</h3>
+<p>jQuery 设计思想之七，就是把事件直接绑定在网页元素之上。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span>
+    <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div><p><a class="link" href="https://www.jquery123.com/category/events/"  target="_blank" rel="noopener"
+    ><strong>查看 jQuery 全部事件操作 -&gt;</strong></a></p>
+<p> </p>
+<blockquote>
+<p><em><strong>资料来源：饥人谷、阮一峰的网络日志、jQuery API 中文文档</strong></em></p>
+</blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/jquery/">jQuery</a>
+        
+            <a href="/tags/javascript/">JavaScript</a>
+        
+            <a href="/tags/js/">JS</a>
+        
+            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3&#43;Aro6EYUG4&#43;cU&#43;KJWu/X"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"integrity="sha384-g7c&#43;Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI&#43;sEnkvrMWph2EDg4"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC&#43;Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/post/dom01/">
+        
+        
+            <div class="article-image">
+                <img src="/post/dom01/dom1.6817c76fb83238450c1011d08fdbbf4d_hud97e667648a730b513b43e90f03dd833_30619_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="dom01" 
+                        data-hash="md5-aBfHb7gyOEUMEBHQj9u/TQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">DOM 事件与事件委托</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/javascript06/">
+        
+        
+            <div class="article-image">
+                <img src="/post/javascript06/js_function.928ed6f88fc7fb39ed4bb984b1147753_hudc705b281e7f3aa7c988f4e75983e055_40234_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="javascript06" 
+                        data-hash="md5-ko7W&#43;I/H&#43;zntS7mEsRR3Uw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JavaScript函数的执行时机</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/javascript05/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JavaScript对象</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/javascript04/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JavaScript的变量声明</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/javascript03/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JavaScript的数据类型</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 DesnLee
+    </section>
+    
+    <section class="powerby">
+        
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">浙ICP备2021009729号</a> <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.3.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

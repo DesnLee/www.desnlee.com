@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='表达式与语句 表达式是一组代码的集合，它返回一个值。每一个合法的表达式都能计算成某个值，但从概念上讲，有两种类型的表达式：有副作用的（比如赋值）和单纯计算求值的。
+JavaScript 的表达式类型  算数： 得出一个数字, 例如 3.14159 字符串： 得出一个字符串, 例如, &amp;ldquo;Fred&amp;rdquo; 或 &amp;ldquo;234&amp;rdquo; 逻辑值： 得出 true 或者 false 基本表达式： JavaScript 中基本的关键字和一般表达式 左值表达式： 分配给左值  例如：
+1 &#43; 2 //表达式的值是3  add(1, 2) //表达式的值为函数的返回值（只有函数才有返回值）  console.log //表达式的值为函数本身  console.log(3) //表达式的值是undefined JavaScript的语句 var a = 1 //就是一个语句 两者区别  表达式一般都有值，但语句可能有，也可能没有 语句一般会改变环境（声明、赋值）  注意   JS大小写敏感 只要不是断句的空格，就没有实际意义。可以任意加回车、空格 但是 return 后面不能加回车   标识符的规则  第一个字符，可以是 unicode字母 $ _ 中文 之后的字符可以是数字  if语句 语法 if (表达式) { 语句1; } else { 语句2; }  { }在语句只有一句的时候可以省略'><title>JavaScript的基本语法</title>
+
+<link rel='canonical' href='/post/javascript02/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='JavaScript的基本语法'>
+<meta property='og:description' content='表达式与语句 表达式是一组代码的集合，它返回一个值。每一个合法的表达式都能计算成某个值，但从概念上讲，有两种类型的表达式：有副作用的（比如赋值）和单纯计算求值的。
+JavaScript 的表达式类型  算数： 得出一个数字, 例如 3.14159 字符串： 得出一个字符串, 例如, &amp;ldquo;Fred&amp;rdquo; 或 &amp;ldquo;234&amp;rdquo; 逻辑值： 得出 true 或者 false 基本表达式： JavaScript 中基本的关键字和一般表达式 左值表达式： 分配给左值  例如：
+1 &#43; 2 //表达式的值是3  add(1, 2) //表达式的值为函数的返回值（只有函数才有返回值）  console.log //表达式的值为函数本身  console.log(3) //表达式的值是undefined JavaScript的语句 var a = 1 //就是一个语句 两者区别  表达式一般都有值，但语句可能有，也可能没有 语句一般会改变环境（声明、赋值）  注意   JS大小写敏感 只要不是断句的空格，就没有实际意义。可以任意加回车、空格 但是 return 后面不能加回车   标识符的规则  第一个字符，可以是 unicode字母 $ _ 中文 之后的字符可以是数字  if语句 语法 if (表达式) { 语句1; } else { 语句2; }  { }在语句只有一句的时候可以省略'>
+<meta property='og:url' content='/post/javascript02/'>
+<meta property='og:site_name' content='DesnLee'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='JavaScript' /><meta property='article:tag' content='JS' /><meta property='article:tag' content='前端' /><meta property='article:tag' content='语法' /><meta property='article:published_time' content='2021-03-21T18:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-03-21T18:00:00&#43;00:00'/><meta property='og:image' content='/img/opengraph.jpg' />
+<meta name="twitter:site" content="@DesnLee">
+    <meta name="twitter:creator" content="@DesnLee"><meta name="twitter:title" content="JavaScript的基本语法">
+<meta name="twitter:description" content="表达式与语句 表达式是一组代码的集合，它返回一个值。每一个合法的表达式都能计算成某个值，但从概念上讲，有两种类型的表达式：有副作用的（比如赋值）和单纯计算求值的。
+JavaScript 的表达式类型  算数： 得出一个数字, 例如 3.14159 字符串： 得出一个字符串, 例如, &amp;ldquo;Fred&amp;rdquo; 或 &amp;ldquo;234&amp;rdquo; 逻辑值： 得出 true 或者 false 基本表达式： JavaScript 中基本的关键字和一般表达式 左值表达式： 分配给左值  例如：
+1 &#43; 2 //表达式的值是3  add(1, 2) //表达式的值为函数的返回值（只有函数才有返回值）  console.log //表达式的值为函数本身  console.log(3) //表达式的值是undefined JavaScript的语句 var a = 1 //就是一个语句 两者区别  表达式一般都有值，但语句可能有，也可能没有 语句一般会改变环境（声明、赋值）  注意   JS大小写敏感 只要不是断句的空格，就没有实际意义。可以任意加回车、空格 但是 return 后面不能加回车   标识符的规则  第一个字符，可以是 unicode字母 $ _ 中文 之后的字符可以是数字  if语句 语法 if (表达式) { 语句1; } else { 语句2; }  { }在语句只有一句的时候可以省略"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/img/opengraph.jpg' />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_huf8d8793edf8af3e588b4b4564e206141_16354_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🇨🇳</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="/">DesnLee</a></h1>
+        <h2 class="site-description">脆弱的人才会四处游说自己的不幸，坚强的人只会不动声色地愈渐强大。这里是 DesnLee 的前端博客，欢迎你的来访！</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-3d-cube-sphere" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M6 17.6l-2 -1.1v-2.5" />
+    <path d="M4 10v-2.5l2 -1.1" />
+    <path d="M10 4.1l2 -1.1l2 1.1" />
+    <path d="M18 6.4l2 1.1v2.5" />
+    <path d="M20 14v2.5l-2 1.12" />
+    <path d="M14 19.9l-2 1.1l-2 -1.1" />
+    <line x1="12" y1="12" x2="14" y2="10.9" />
+    <line x1="18" y1="8.6" x2="20" y2="7.5" />
+    <line x1="12" y1="12" x2="12" y2="14.5" />
+    <line x1="12" y1="18.5" x2="12" y2="21" />
+    <path d="M12 12l-2 -1.12" />
+    <line x1="6" y1="8.6" x2="4" y2="7.5" />
+</svg>
+                
+                <span>Categories</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>Dark Mode</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="/" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/javascript/" style="background-color: #F9A826; color: #fff;">
+                JavaScript
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/javascript02/">JavaScript的基本语法</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Mar 21, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="表达式与语句">表达式与语句</h1>
+<p>表达式是一组代码的集合，它返回一个值。每一个合法的表达式都能计算成某个值，但从概念上讲，有两种类型的表达式：有副作用的（<em>比如赋值</em>）和单纯计算求值的。</p>
+<h2 id="javascript-的表达式类型">JavaScript 的表达式类型</h2>
+<ul>
+<li><strong>算数：</strong> 得出一个数字, 例如 3.14159</li>
+<li><strong>字符串：</strong> 得出一个字符串, 例如, &ldquo;Fred&rdquo; 或 &ldquo;234&rdquo;</li>
+<li><strong>逻辑值：</strong> 得出 <code>true</code> 或者 <code>false</code></li>
+<li><strong>基本表达式：</strong> JavaScript 中基本的关键字和一般表达式</li>
+<li><strong>左值表达式：</strong> 分配给左值</li>
+</ul>
+<p>例如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span>           
+<span class="c1">//表达式的值是3
+</span><span class="c1"></span>
+<span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>       
+<span class="c1">//表达式的值为函数的返回值（只有函数才有返回值）
+</span><span class="c1"></span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span>     
+<span class="c1">//表达式的值为函数本身
+</span><span class="c1"></span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  
+<span class="c1">//表达式的值是undefined
+</span></code></pre></div><h2 id="javascript的语句">JavaScript的语句</h2>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span>       
+<span class="c1">//就是一个语句
+</span></code></pre></div><h2 id="两者区别">两者区别</h2>
+<ul>
+<li>表达式一般都有值，但语句可能有，也可能没有</li>
+<li>语句一般会改变环境（声明、赋值）</li>
+</ul>
+<h2 id="注意">注意</h2>
+<blockquote>
+<ul>
+<li>JS大小写敏感</li>
+<li>只要不是断句的空格，就没有实际意义。可以任意加回车、空格</li>
+<li>但是 return 后面不能加回车</li>
+</ul>
+</blockquote>
+<h1 id="标识符的规则">标识符的规则</h1>
+<ul>
+<li>第一个字符，可以是 <code>unicode字母</code> <code>$</code> <code>_</code> <code>中文</code></li>
+<li>之后的字符可以是数字</li>
+</ul>
+<h1 id="if语句">if语句</h1>
+<h2 id="语法">语法</h2>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="nx">表达式</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">语句1</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">语句2</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><blockquote>
+<p><code>{ }</code>在语句只有一句的时候可以省略</p>
+</blockquote>
+<h2 id="注意-1">注意</h2>
+<ul>
+<li>表达式里可以非常变态，如 <code>a = 1</code></li>
+<li>语句1 和 语句2 里可以嵌套 <code>if else</code></li>
+<li>注意缩进及省略 <code>{ }</code> 的情况</li>
+</ul>
+<h2 id="switch语句">switch语句</h2>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">switch</span> <span class="p">(</span><span class="nx">fruit</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="s2">&#34;banana&#34;</span><span class="o">:</span>
+        <span class="c1">//...
+</span><span class="c1"></span>        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="s2">&#34;apple&#34;</span><span class="o">:</span>
+        <span class="c1">//...
+</span><span class="c1"></span>        <span class="k">break</span><span class="p">;</span>
+    <span class="k">default</span><span class="o">:</span>
+    <span class="c1">//...
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="c1">// break 不能省略，除非需要判断多个条件
+</span></code></pre></div><h2 id="问号冒号表达式三元表达式">问号冒号表达式（三元表达式）</h2>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">表达式1</span> <span class="o">?</span> <span class="nx">表达式2</span> <span class="o">:</span> <span class="nx">表达式3</span>
+
+<span class="c1">//如果表达式1成立，返回表达式2，否则返回表达式3
+</span><span class="c1">//if else 各只有一句的时候可以用问号冒号表达式简化
+</span></code></pre></div><h2 id="短路逻辑-和-短路逻辑">&amp;&amp;短路逻辑 和 ||短路逻辑</h2>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">A</span> <span class="o">&amp;&amp;</span> <span class="nx">B</span> <span class="o">&amp;&amp;</span> <span class="nx">C</span> <span class="o">&amp;&amp;</span> <span class="nx">D</span>
+
+<span class="c1">//取第一个为假的值，如果都为真则取最后一个值，并不会取 true / false
+</span><span class="c1">//也是用来代替 if else 语句
+</span><span class="c1"></span>
+<span class="nx">例</span><span class="o">:</span> <span class="nx">fn</span> <span class="o">&amp;&amp;</span> <span class="nx">fn</span><span class="p">()</span>  
+<span class="c1">//如果 fn 存在，就调用 fn
+</span><span class="c1"></span>
+
+<span class="nx">A</span> <span class="o">||</span> <span class="nx">B</span> <span class="o">||</span> <span class="nx">C</span> <span class="o">||</span> <span class="nx">D</span>
+<span class="c1">//取第一个为真的值，如果都为假则取最后一个值，并不会取 true / false
+</span><span class="c1">//也是用来代替 if else 语句
+</span><span class="c1"></span>
+<span class="nx">例</span><span class="o">:</span> <span class="nx">A</span> <span class="o">=</span> <span class="nx">A</span> <span class="o">||</span> <span class="nx">B</span>  
+<span class="c1">//如果 A 不存在，则 A = B，B 是 A 的保底值
+</span></code></pre></div><h1 id="循环">循环</h1>
+<h2 id="while循环">while循环</h2>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span><span class="mi">1</span>         <span class="c1">//初始化
+</span><span class="c1"></span><span class="k">while</span> <span class="p">(</span><span class="nx">表达式</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">//判断
+</span><span class="c1"></span>    <span class="nx">语句</span>          <span class="c1">//循环体
+</span><span class="c1"></span>    <span class="nx">a</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">+</span><span class="mf">0.1</span>   <span class="c1">//增长
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="c1">// 1.判断表达式的真假
+</span><span class="c1">// 2.表达式为真，执行语句，执行完再返回判断表达式的真假
+</span><span class="c1">// 3.表达式为假，跳出循环，执行花括号后面的语句
+</span></code></pre></div><h2 id="for循环">for循环</h2>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span><span class="p">(</span><span class="nx">语句1</span><span class="p">;</span><span class="nx">表达式2</span><span class="p">;</span><span class="nx">语句3</span><span class="p">){</span>
+    <span class="nx">循环体</span>
+<span class="p">}</span>
+
+<span class="c1">// 1.先执行语句1
+</span><span class="c1">// 2.然后判断表达式2
+</span><span class="c1">// 3.如果为真，执行循环体，然后执行语句3
+</span><span class="c1">// 4.如果为假，跳出循环，执行花括号后面的语句
+</span></code></pre></div><h2 id="break-和-continue">break 和 continue</h2>
+<ul>
+<li><code>break</code>  退出当前所有循环</li>
+<li><code>continue</code>  退出当前这一次循环</li>
+</ul>
+<h1 id="label">label</h1>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">foo</span><span class="o">:</span> <span class="p">{</span>            <span class="c1">//标识符
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>    <span class="c1">//花括号内打印 1
+</span><span class="c1"></span><span class="k">break</span> <span class="nx">foo</span><span class="p">;</span>        <span class="c1">//跳出
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>   <span class="c1">//花括号内打印 2
+</span><span class="c1"></span><span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>    <span class="c1">//花括号外打印 3
+</span><span class="c1"></span>
+<span class="c1">// 结果只会打出 1 和 3 ，因为在打印 2 之前使用了 break 跳出
+</span></code></pre></div><p> </p>
+<blockquote>
+<p><em><strong>资料来源：饥人谷、WikiPedia</strong></em></p>
+</blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/javascript/">JavaScript</a>
+        
+            <a href="/tags/js/">JS</a>
+        
+            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+        
+            <a href="/tags/%E8%AF%AD%E6%B3%95/">语法</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3&#43;Aro6EYUG4&#43;cU&#43;KJWu/X"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"integrity="sha384-g7c&#43;Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI&#43;sEnkvrMWph2EDg4"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC&#43;Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/post/javascript04/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JavaScript的变量声明</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/dom01/">
+        
+        
+            <div class="article-image">
+                <img src="/post/dom01/dom1.6817c76fb83238450c1011d08fdbbf4d_hud97e667648a730b513b43e90f03dd833_30619_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="dom01" 
+                        data-hash="md5-aBfHb7gyOEUMEBHQj9u/TQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">DOM 事件与事件委托</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/jquery01/">
+        
+        
+            <div class="article-image">
+                <img src="/post/jquery01/jquery.cddad3b26f77785bc6f2b8527cfe6588_hu8ecff6ff9b6bcd20ee9d2ea60e2922b7_54313_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="jquery01" 
+                        data-hash="md5-zdrTsm93eFvG8rhSfP5liA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">jQuery 常用操作手册</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/javascript06/">
+        
+        
+            <div class="article-image">
+                <img src="/post/javascript06/js_function.928ed6f88fc7fb39ed4bb984b1147753_hudc705b281e7f3aa7c988f4e75983e055_40234_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="javascript06" 
+                        data-hash="md5-ko7W&#43;I/H&#43;zntS7mEsRR3Uw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JavaScript函数的执行时机</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/javascript05/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JavaScript对象</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 DesnLee
+    </section>
+    
+    <section class="powerby">
+        
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">浙ICP备2021009729号</a> <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.3.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

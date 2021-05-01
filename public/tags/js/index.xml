@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JS on DesnLee</title>
+    <link>/tags/js/</link>
+    <description>Recent content in JS on DesnLee</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 01 May 2021 02:00:00 +0000</lastBuildDate><atom:link href="/tags/js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DOM 事件与事件委托</title>
+      <link>/post/dom01/</link>
+      <pubDate>Sat, 01 May 2021 02:00:00 +0000</pubDate>
+      
+      <guid>/post/dom01/</guid>
+      <description>什么是 DOM 事件 文档对象模型 （Document Object Model） 是 HTML 和 XML 文档的编程接口。
+它提供了对文档的结构化的表述，并定义了一种方式可以使从程序中对该结构进行访问，从而改变文档的结构，样式和内容。DOM 将文档解析为一个由节点和对象（包含属性和方法的对象）组成的结构集合。
+文档对象模型（DOM）提供了对同一份文档的另一种表现，存储和操作的方式。 DOM 是 web 页面的完全的面向对象表述，它能够使用如 JavaScript 等脚本语言进行修改。
+而事件是 JavaScript 与 HTML 交互的基础。要实现用户与页面的交互，先要通过 DOM 接口访问元素，再对目标元素绑定特定的事件、设置事件处理函数，然后用户触发事件，事件处理函数执行，产生交互效果。
+DOM 事件模型和事件流 事件流又称为事件传播，描述的是从页面中接收事件的顺序。当一个事件发生后，会在子元素和父元素之间传播（propagation）。这种传播分成三个阶段。
+ 事件捕获阶段（capturing phase）： 事件从 window 对象自上而下向目标节点传播的阶段； 处于目标阶段（target phase）： 真正的目标节点正在处理事件的阶段； 事件冒泡阶段（bubbling phase）： 事件从目标节点自下而上向 window 对象传播的阶段。   在DOM2级事件流中，当我们点击下面的代码片段中的 div 元素后，在事件捕获阶段从上到下传播
+ window &amp;ndash;&amp;gt; document -&amp;gt; html -&amp;gt; body &amp;ndash;&amp;gt; 目标
+ &amp;lt;html&amp;gt; &amp;lt;body&amp;gt; &amp;lt;div&amp;gt; 点我 &amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 而事件冒泡的流程刚好是事件捕获的逆过程，冒泡和捕获的过程如下图：  DOM 事件流模型</description>
+    </item>
+    
+    <item>
+      <title>jQuery 常用操作手册</title>
+      <link>/post/jquery01/</link>
+      <pubDate>Thu, 29 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/jquery01/</guid>
+      <description>jQuery 简介 jQuery 是一套跨浏览器的 JavaScript 库，简化 HTML 与 JavaScript 之间的操作。
+据统计，全世界排名前 100 万的网站，有 76.85% 在使用 jQuery ，远远超过其他库（截止至2021年2月）。 点击查看统计数据 -&amp;gt;
+在 jQuery 诞生前，人们是使用原生 JS 来对 DOM 等一系列做操作的，但 JS 提供的 DOM API 有点反人类。
+因此，经过前端程序员们不断的努力和尝试，发明了现在这套经典的 JavaScript 函数库。
+jQuery 常用操作 关于 jQuery 的全部 API，请查看 jQuery 中文文档，以下仅对常用的操作进行罗列。
+选择网页元素 jQuery 的基本设计思想和主要用法，就是 选择某个网页元素，然后对其进行某种操作。这是它区别于其他 Javascript 库的根本特点。
+使用 jQuery 的第一步，就是一个选择表达式，放进构造函数 jQuery()（简写为$），然后就可以对该元素进行操作了。
+选择表达式可以是 CSS 选择器，也可以是 jQuery 特有的表达式
+$(document) //选择整个文档  $(&amp;#39;#id&amp;#39;) //通过元素的 id 选择元素  $(&amp;#39;div.class&amp;#39;) // 通过 class 属性选择 div 元素  $(&amp;#39;input[name=name]&amp;#39;) // 通过 name 属性选择 input 元素  $(&amp;#39;a:first&amp;#39;) //选择网页中第一个 a 元素  $(&amp;#39;tr:odd&amp;#39;) //选择 tr 的奇数（odd）行  $(&amp;#39;#form :input&amp;#39;) // 选择表单中的 input 元素  $(&amp;#39;div:visible&amp;#39;) //选择可见（visible）的 div 元素  $(&amp;#39;div:gt(2)&amp;#39;) // 选择除了前三个余下的 div 元素，数字为下标  $(&amp;#39;div:animated&amp;#39;) // 选择当前处于动画状态的 div 元素 jQuery 设计思想之二，就是提供各种过滤器对结果集进行筛选进而缩小范围。</description>
+    </item>
+    
+    <item>
+      <title>JavaScript函数的执行时机</title>
+      <link>/post/javascript06/</link>
+      <pubDate>Mon, 05 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/javascript06/</guid>
+      <description>问题 有这么一段代码，打印的结果和预期不符
+let i = 0 for(i = 0; i&amp;lt;6; i++){ setTimeout(()=&amp;gt;{ console.log(i) },0) } //6,6,6,6,6,6 预期的结果是打印出 0,1,2,3,4,5 ，但是执行的结果是 6,6,6,6,6,6
+分析 上面这段代码，用到了 setTimeout ，setTimeout 的作用是设置一个定时器，定时器到期后执行一个函数或指定的一段代码。
+上面的代码可以理解为：初始化 i 是 0，然后设置一个打印 i 的定时器，然后让 i 加 1，再次循环设置第二个定时器，直到 i 等于 6 则不再设置定时器，最后在退出 for 循环后，开始执行之前定的 6 个定时器。
+由于定时器执行是在for循环结束之后，所以当for 循环结束后，i 的值是 6， 这时候执行 6个定时器，定时器的内容是打印 i，于是打印结果就是 6,6,6,6,6,6。
+如何打印出符合预期的结果 将 let i = 0 写在for 循环里面即可
+for(let i = 0; i&amp;lt;6; i++){ setTimeout(()=&amp;gt;{ console.log(i) },0) } // 0，1，2，3，4，5 其他方法 使用闭包，每次循环从外部把当时 i 的值传给 setClock，由 setClock 用当时的 i 的值设置定时器，最终输出 0,1,2,3,4,5</description>
+    </item>
+    
+    <item>
+      <title>JavaScript对象</title>
+      <link>/post/javascript05/</link>
+      <pubDate>Sat, 03 Apr 2021 18:00:00 +0000</pubDate>
+      
+      <guid>/post/javascript05/</guid>
+      <description>JavaScript对象 JavaScript对象是七种数据类型中唯一一种复杂类型。
+ 是无序的数据集合 是键值对的集合  声明对象的写法 let obj = { &amp;#39;name&amp;#39;: &amp;#39;frank&amp;#39;, &amp;#39;age&amp;#39;: 18 } let obj = new Object({ &amp;#39;name&amp;#39;: &amp;#39;frank&amp;#39;}) 注意：
+ 键名是字符串，不是标识符，可以包含任意字符 引号可以省略，省略之后就只能写标识符 就算省略了引号，键名也还是字符串  变量做属性名 写法
+let p1 = &amp;#39;name&amp;#39; let obj = {[p1]:&amp;#39;frank&amp;#39;} //属性名为&amp;#39;name&amp;#39; 对比
+ 不加 [] 的属性名会自动变成字符串 加了 [] 则会当作变量，先求值再变字符串 值如果不是字符串，则会自动变成字符串  对象的增删改查 删除属性 delete obj.xxx delete obj[&amp;#39;xxx&amp;#39;] //可删除 obj 的 xxx 属性（键和值）  obj.xxx = undefined //让 obj 的 xxx 属性值为 undefined，键还在 确认对象是否存在某个属性</description>
+    </item>
+    
+    <item>
+      <title>JavaScript的变量声明</title>
+      <link>/post/javascript04/</link>
+      <pubDate>Sat, 03 Apr 2021 14:00:00 +0000</pubDate>
+      
+      <guid>/post/javascript04/</guid>
+      <description>JavaScript的变量声明 var a = 1 let a = 1 const a = 1  var 是过时的，不好用的方式 let 是新的，更合理的方式 const 声明时必须赋值且不能再改   一般用 let 声明变量， const 声明常量
+ let声明  遵循块作用域，即使用范围为 {} 内部 不能重复声明 可以赋值，也可以不赋值 必须先声明，才能使用，否则报错 全局声明的 let 变量，不会变成 window 的属性，而 var 会创建 window 的属性 for 循环配合 let 有奇效  const声明  跟 let 几乎一样 声明时必须赋值，并且不能再改 for 循环不能使用 const， 因为 const 变量的值不能被修改  name 和 `name` 的区别  name 是变量，值可以是任何东西 `name` 是字符串常量，不会改变，只能是 `name`    资料来源：饥人谷</description>
+    </item>
+    
+    <item>
+      <title>JavaScript的数据类型</title>
+      <link>/post/javascript03/</link>
+      <pubDate>Sat, 03 Apr 2021 12:00:00 +0000</pubDate>
+      
+      <guid>/post/javascript03/</guid>
+      <description>JavaScript的数据类型  数字 number 字符串 string 布尔 bool 符号 symbol 空 undefined 空 null 对象 object   注意：数组，函数，日期不是数据类型，都属于对象 object
+ 数字（64位浮点数） JS里数字的写法 JS里数字可以用以下几种写法来写：
+1 //整数写法 0.1 //小数写法 1.23e4 //科学计数法 0123 或 00123 或 0o123 //八进制写法，较少 0x3F 或 0X3F //十六进制写法 0b11 或 0B11 //二进制写法 JS数字中的特殊值  正 0 和 负 0 不一样，但都等于 0 无穷大 Infinity +Infinity -Infinity 无法表示的数字 NaN（Not a Number），但它是一个数字  64位浮点数 浮点（floating point，缩写为FP）是一种对于实数的近似值数值表现法，由一个有效数字（尾数）加上幂数来表示，通常是乘以某个基数的整数次指数得到。以这种表示法表示的数值，称为浮点数（floating-point number）。
+ 例：123.456 可以表示为 1.23456e10^2</description>
+    </item>
+    
+    <item>
+      <title>JavaScript的基本语法</title>
+      <link>/post/javascript02/</link>
+      <pubDate>Sun, 21 Mar 2021 18:00:00 +0000</pubDate>
+      
+      <guid>/post/javascript02/</guid>
+      <description>表达式与语句 表达式是一组代码的集合，它返回一个值。每一个合法的表达式都能计算成某个值，但从概念上讲，有两种类型的表达式：有副作用的（比如赋值）和单纯计算求值的。
+JavaScript 的表达式类型  算数： 得出一个数字, 例如 3.14159 字符串： 得出一个字符串, 例如, &amp;ldquo;Fred&amp;rdquo; 或 &amp;ldquo;234&amp;rdquo; 逻辑值： 得出 true 或者 false 基本表达式： JavaScript 中基本的关键字和一般表达式 左值表达式： 分配给左值  例如：
+1 + 2 //表达式的值是3  add(1, 2) //表达式的值为函数的返回值（只有函数才有返回值）  console.log //表达式的值为函数本身  console.log(3) //表达式的值是undefined JavaScript的语句 var a = 1 //就是一个语句 两者区别  表达式一般都有值，但语句可能有，也可能没有 语句一般会改变环境（声明、赋值）  注意   JS大小写敏感 只要不是断句的空格，就没有实际意义。可以任意加回车、空格 但是 return 后面不能加回车   标识符的规则  第一个字符，可以是 unicode字母 $ _ 中文 之后的字符可以是数字  if语句 语法 if (表达式) { 语句1; } else { 语句2; }  { }在语句只有一句的时候可以省略</description>
+    </item>
+    
+    <item>
+      <title>JavaScript初探</title>
+      <link>/post/javascript01/</link>
+      <pubDate>Sun, 21 Mar 2021 12:00:00 +0000</pubDate>
+      
+      <guid>/post/javascript01/</guid>
+      <description>JavaScript是什么 JavaScript（通常缩写为 JS ）是一种高级的、解释型的编程语言。JavaScript 是一门基于原型、函数先行的语言，是一门多范式的语言，它支持面向对象程序设计，命令式编程，以及函数式编程。它提供语法来操控文本、数组、日期以及正则表达式等，不支持I/O，比如网络、存储和图形等，但这些都可以由它的宿主环境提供支持。它已经由 ECMA（欧洲电脑制造商协会）通过 ECMAScript 实现语言的标准化。它被世界上的绝大多数网站所使用，也被世界主流浏览器（Chrome、IE、Firefox、Safari、Opera）支持。
+JavaScript 与 Java 在名字或语法上都有很多相似性，但这两门编程语言从设计之初就有很大的不同，JavaScript 的语言设计主要受到了 Self（一种基于原型的编程语言）和 Scheme（一门函数式编程语言）的影响。在语法结构上它又与C语言有很多相似（例如if条件语句、switch语句、while循环、do-while循环等）。
+在客户端，JavaScript 在传统意义上被实现为一种解释语言，但在最近，它已经可以被即时编译（JIT）执行。随着最新的 HTML5 和 CSS3 语言标准的推行它还可用于游戏、桌面和移动应用程序的开发和在服务器端网络环境运行，如 Node.js。
+为什么要发明JavaScript 1994年，网景公司（Netscape）发布了 Navigator 浏览器 0.9 版。这是历史上第一个比较成熟的网络浏览器，轰动一时。但是，这个版本的浏览器只能用来浏览，不具备与访问者互动的能力。比如，如果网页上有一栏&amp;quot;用户名&amp;quot;要求填写，浏览器就无法判断访问者是否真的填写了，只有让服务器端判断。如果没有填写，服务器端就返回错误，要求用户重新填写，这太浪费时间和服务器资源了。
+网景公司当时有两个选择：
+  一个是采用现有的语言，比如 Perl、Python、Tcl、Scheme 等等，允许它们直接嵌入网页 另一个是发明一种全新的语言。   这两个选择各有利弊。第一个选择，有利于充分利用现有代码和程序员资源，推广起来比较容易；第二个选择，有利于开发出完全适用的语言，实现起来比较容易。 到底采用哪一个选择，网景公司内部争执不下，管理层一时难以下定决心。
+就在这时，发生了另外一件大事：1995年 Sun 公司将 Oak 语言改名为 Java，正式向市场推出。 Sun 公司大肆宣传，许诺这种语言可以 &amp;ldquo;一次编写，到处运行&amp;rdquo;（Write Once, Run Anywhere），它看上去很可能成为未来的主宰。网景公司动了心，决定与Sun公司结成联盟。它不仅允许 Java 程序以 applet（小程序）的形式，直接在浏览器中运行；甚至还考虑直接将 Java 作为脚本语言嵌入网页，只是因为这样会使HTML网页过于复杂，后来才不得不放弃。
+总之，当时的形势就是，网景公司的整个管理层，都是 Java 语言的信徒，Sun 公司完全介入网页脚本语言的决策。因此，Javascript 后来就是网景和 Sun 两家公司一起携手推向市场的，这种语言被命名为 Java + script 并不是偶然的。
+JavaScript的诞生 此时，34岁的系统程序员 Brendan Eich 登场了。Brendan Eich 的主要方向和兴趣是函数式编程，网景公司招聘他的目的，是研究将 Scheme 语言作为网页脚本语言的可能性。Brendan Eich 本人也是这样想的，以为进入新公司后，会主要与 Scheme 语言打交道。</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='CSS布局是什么 布局是把页面分成一块一块，按左中右、上中下等排列。
+ 固定宽度布局： 一般 960px、1000px、1024px 等宽度。 不固定宽度布局： 主要靠文档流的原理布局。 响应式布局： PC上固定宽度，移动端不固定宽度，也就是混合布局。   布局的两种思路
+从大到小——先定下大局，然后完善每个部分的小布局。
+从小到大——先完成小布局，然后组合成大布局。
+ CSS布局之——Float浮动布局 float 属性指定一个元素应沿其容器的左侧或右侧放置，允许文本和内联元素环绕它。该元素将从网页的正常流动(文档流)中移除。
+当一个元素浮动之后，它会被移出正常的文档流，然后向左或者向右平移，一直平移直到碰到了所处的容器的边框，或者碰到另外一个浮动的元素。
+最早是为了图文混排，兼容 IE 则需 float 布局，否则可直接用 flex 或者 grid 布局，其更加强大。
+具体使用方式参考 MDN 文档 -&amp;gt;
+CSS布局之——Flex弹性布局 flex 属性设置了弹性项目如何增大或缩小以适应其弹性容器中可用的空间。 此方案为目前网页主流布局方式。
+具体使用方式参考 MDN 文档 -&amp;gt;
+CSS布局之——Grid网格布局 grid 属性定义了一个 CSS 网格。接着就可以使用属性给网格划分区域，然后就可以在这些网格中自由选择区域放置内容，称为网格布局。网格布局比 flex 弹性布局更加强大，但目前此方案浏览器兼容性比较差。
+具体使用方式参考 MDN 文档 -&amp;gt;
+浏览器渲染原理 浏览器拿到一个网页的文件后，依次做出以下的处理，然后浏览器就可以显示出网页渲染后的样子：
+  根据HTML构建HTML树（DOM） 根据CSS构建CSS树（CSSOM） 将两棵树合并成一棵渲染树（render tree） Layout 布局（文档流、盒模型、计算大小和位置） Paint 绘制（把边框颜色、文字颜色、阴影等画出来） Composite 合成（根据层叠关系展示画面）   CSS动画及性能优化 通过更新元素的CSS属性，使得元素有变化，就是一个CSS动画。三种更新方式为：'><title>CSS布局及动画</title>
+
+<link rel='canonical' href='/post/css02/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='CSS布局及动画'>
+<meta property='og:description' content='CSS布局是什么 布局是把页面分成一块一块，按左中右、上中下等排列。
+ 固定宽度布局： 一般 960px、1000px、1024px 等宽度。 不固定宽度布局： 主要靠文档流的原理布局。 响应式布局： PC上固定宽度，移动端不固定宽度，也就是混合布局。   布局的两种思路
+从大到小——先定下大局，然后完善每个部分的小布局。
+从小到大——先完成小布局，然后组合成大布局。
+ CSS布局之——Float浮动布局 float 属性指定一个元素应沿其容器的左侧或右侧放置，允许文本和内联元素环绕它。该元素将从网页的正常流动(文档流)中移除。
+当一个元素浮动之后，它会被移出正常的文档流，然后向左或者向右平移，一直平移直到碰到了所处的容器的边框，或者碰到另外一个浮动的元素。
+最早是为了图文混排，兼容 IE 则需 float 布局，否则可直接用 flex 或者 grid 布局，其更加强大。
+具体使用方式参考 MDN 文档 -&amp;gt;
+CSS布局之——Flex弹性布局 flex 属性设置了弹性项目如何增大或缩小以适应其弹性容器中可用的空间。 此方案为目前网页主流布局方式。
+具体使用方式参考 MDN 文档 -&amp;gt;
+CSS布局之——Grid网格布局 grid 属性定义了一个 CSS 网格。接着就可以使用属性给网格划分区域，然后就可以在这些网格中自由选择区域放置内容，称为网格布局。网格布局比 flex 弹性布局更加强大，但目前此方案浏览器兼容性比较差。
+具体使用方式参考 MDN 文档 -&amp;gt;
+浏览器渲染原理 浏览器拿到一个网页的文件后，依次做出以下的处理，然后浏览器就可以显示出网页渲染后的样子：
+  根据HTML构建HTML树（DOM） 根据CSS构建CSS树（CSSOM） 将两棵树合并成一棵渲染树（render tree） Layout 布局（文档流、盒模型、计算大小和位置） Paint 绘制（把边框颜色、文字颜色、阴影等画出来） Composite 合成（根据层叠关系展示画面）   CSS动画及性能优化 通过更新元素的CSS属性，使得元素有变化，就是一个CSS动画。三种更新方式为：'>
+<meta property='og:url' content='/post/css02/'>
+<meta property='og:site_name' content='DesnLee'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='CSS' /><meta property='article:tag' content='布局' /><meta property='article:tag' content='动画' /><meta property='article:tag' content='前端' /><meta property='article:tag' content='Flex' /><meta property='article:tag' content='Grid' /><meta property='article:published_time' content='2021-03-18T14:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-03-18T14:00:00&#43;00:00'/><meta property='og:image' content='/post/css02/animation.jpg' />
+<meta name="twitter:site" content="@DesnLee">
+    <meta name="twitter:creator" content="@DesnLee"><meta name="twitter:title" content="CSS布局及动画">
+<meta name="twitter:description" content="CSS布局是什么 布局是把页面分成一块一块，按左中右、上中下等排列。
+ 固定宽度布局： 一般 960px、1000px、1024px 等宽度。 不固定宽度布局： 主要靠文档流的原理布局。 响应式布局： PC上固定宽度，移动端不固定宽度，也就是混合布局。   布局的两种思路
+从大到小——先定下大局，然后完善每个部分的小布局。
+从小到大——先完成小布局，然后组合成大布局。
+ CSS布局之——Float浮动布局 float 属性指定一个元素应沿其容器的左侧或右侧放置，允许文本和内联元素环绕它。该元素将从网页的正常流动(文档流)中移除。
+当一个元素浮动之后，它会被移出正常的文档流，然后向左或者向右平移，一直平移直到碰到了所处的容器的边框，或者碰到另外一个浮动的元素。
+最早是为了图文混排，兼容 IE 则需 float 布局，否则可直接用 flex 或者 grid 布局，其更加强大。
+具体使用方式参考 MDN 文档 -&amp;gt;
+CSS布局之——Flex弹性布局 flex 属性设置了弹性项目如何增大或缩小以适应其弹性容器中可用的空间。 此方案为目前网页主流布局方式。
+具体使用方式参考 MDN 文档 -&amp;gt;
+CSS布局之——Grid网格布局 grid 属性定义了一个 CSS 网格。接着就可以使用属性给网格划分区域，然后就可以在这些网格中自由选择区域放置内容，称为网格布局。网格布局比 flex 弹性布局更加强大，但目前此方案浏览器兼容性比较差。
+具体使用方式参考 MDN 文档 -&amp;gt;
+浏览器渲染原理 浏览器拿到一个网页的文件后，依次做出以下的处理，然后浏览器就可以显示出网页渲染后的样子：
+  根据HTML构建HTML树（DOM） 根据CSS构建CSS树（CSSOM） 将两棵树合并成一棵渲染树（render tree） Layout 布局（文档流、盒模型、计算大小和位置） Paint 绘制（把边框颜色、文字颜色、阴影等画出来） Composite 合成（根据层叠关系展示画面）   CSS动画及性能优化 通过更新元素的CSS属性，使得元素有变化，就是一个CSS动画。三种更新方式为："><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/post/css02/animation.jpg' />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_huf8d8793edf8af3e588b4b4564e206141_16354_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🇨🇳</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="/">DesnLee</a></h1>
+        <h2 class="site-description">脆弱的人才会四处游说自己的不幸，坚强的人只会不动声色地愈渐强大。这里是 DesnLee 的前端博客，欢迎你的来访！</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-3d-cube-sphere" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M6 17.6l-2 -1.1v-2.5" />
+    <path d="M4 10v-2.5l2 -1.1" />
+    <path d="M10 4.1l2 -1.1l2 1.1" />
+    <path d="M18 6.4l2 1.1v2.5" />
+    <path d="M20 14v2.5l-2 1.12" />
+    <path d="M14 19.9l-2 1.1l-2 -1.1" />
+    <line x1="12" y1="12" x2="14" y2="10.9" />
+    <line x1="18" y1="8.6" x2="20" y2="7.5" />
+    <line x1="12" y1="12" x2="12" y2="14.5" />
+    <line x1="12" y1="18.5" x2="12" y2="21" />
+    <path d="M12 12l-2 -1.12" />
+    <line x1="6" y1="8.6" x2="4" y2="7.5" />
+</svg>
+                
+                <span>Categories</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>Dark Mode</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="/" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/post/css02/">
+                <img src="/post/css02/animation_hu13aa786e8975fa6207722c36a94e461f_60542_800x0_resize_q75_box.jpg"
+                        srcset="/post/css02/animation_hu13aa786e8975fa6207722c36a94e461f_60542_800x0_resize_q75_box.jpg 800w, /post/css02/animation_hu13aa786e8975fa6207722c36a94e461f_60542_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="406" 
+                        loading="lazy"
+                        alt="Featured image of post CSS布局及动画" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/css/" style="background-color: #49a1d9; color: #fff;">
+                CSS
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/css02/">CSS布局及动画</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Mar 18, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="css布局是什么">CSS布局是什么</h1>
+<p>布局是把页面分成一块一块，按左中右、上中下等排列。</p>
+<ul>
+<li><strong>固定宽度布局：</strong> 一般 960px、1000px、1024px 等宽度。</li>
+<li><strong>不固定宽度布局：</strong> 主要靠文档流的原理布局。</li>
+<li><strong>响应式布局：</strong> PC上固定宽度，移动端不固定宽度，也就是混合布局。</li>
+</ul>
+<blockquote>
+<p><strong>布局的两种思路</strong></p>
+<p>从大到小——先定下大局，然后完善每个部分的小布局。</p>
+<p>从小到大——先完成小布局，然后组合成大布局。</p>
+</blockquote>
+<h2 id="css布局之float浮动布局">CSS布局之——Float浮动布局</h2>
+<p><code>float</code> 属性指定一个元素应沿其容器的左侧或右侧放置，允许文本和内联元素环绕它。该元素将从网页的正常流动(<em>文档流</em>)中移除。</p>
+<p>当一个元素浮动之后，它会被移出正常的文档流，然后向左或者向右平移，一直平移直到碰到了所处的容器的边框，或者碰到另外一个浮动的元素。</p>
+<p>最早是为了图文混排，兼容 IE 则需 <code>float</code> 布局，否则可直接用 <code>flex</code> 或者 <code>grid</code> 布局，其更加强大。</p>
+<p><a class="link" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/float"  target="_blank" rel="noopener"
+    >具体使用方式参考 MDN 文档 -&gt;</a></p>
+<h2 id="css布局之flex弹性布局">CSS布局之——Flex弹性布局</h2>
+<p><code>flex</code> 属性设置了弹性项目如何增大或缩小以适应其弹性容器中可用的空间。 此方案为目前网页主流布局方式。</p>
+<p><a class="link" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex"  target="_blank" rel="noopener"
+    >具体使用方式参考 MDN 文档 -&gt;</a></p>
+<h2 id="css布局之grid网格布局">CSS布局之——Grid网格布局</h2>
+<p><code>grid</code> 属性定义了一个 CSS 网格。接着就可以使用属性给网格划分区域，然后就可以在这些网格中自由选择区域放置内容，称为网格布局。网格布局比 flex 弹性布局更加强大，但目前此方案浏览器兼容性比较差。</p>
+<p><a class="link" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/grid"  target="_blank" rel="noopener"
+    >具体使用方式参考 MDN 文档 -&gt;</a></p>
+<h1 id="浏览器渲染原理">浏览器渲染原理</h1>
+<p>浏览器拿到一个网页的文件后，依次做出以下的处理，然后浏览器就可以显示出网页渲染后的样子：</p>
+<blockquote>
+<ol>
+<li>根据HTML构建HTML树（DOM）</li>
+<li>根据CSS构建CSS树（CSSOM）</li>
+<li>将两棵树合并成一棵渲染树（render tree）</li>
+<li>Layout 布局（文档流、盒模型、计算大小和位置）</li>
+<li>Paint 绘制（把边框颜色、文字颜色、阴影等画出来）</li>
+<li>Composite 合成（根据层叠关系展示画面）</li>
+</ol>
+</blockquote>
+<h1 id="css动画及性能优化">CSS动画及性能优化</h1>
+<p>通过更新元素的CSS属性，使得元素有变化，就是一个CSS动画。三种更新方式为：</p>
+<ul>
+<li>更新 Layout，整个页面布局 relayout，从第 4 步开始将页面重新渲染一次。</li>
+<li>更新 Paint，将元素的 paint 属性更新，从第 5 步开始将页面重新渲染一次。</li>
+<li>更新 Composite，仅仅只需重走第 6 步。</li>
+</ul>
+<p>依据上面的渲染原理可得出，改变的属性在浏览器渲染步骤中越靠后，浏览器重新渲染所需的步骤资源就越少，性能就越好。</p>
+<blockquote>
+<p>例如使用 <code>will-change</code> 或 <code>translate</code></p>
+</blockquote>
+<h1 id="css动画的实现方式">CSS动画的实现方式</h1>
+<h2 id="transform变形--transition过渡">transform（变形） &amp; transition（过渡）</h2>
+<p><code>transform</code> 属性允许你旋转，缩放，倾斜或平移给定元素。这是通过修改CSS视觉格式化模型的坐标空间来实现的。</p>
+<p><code>transition</code> 属性可以被指定为一个或多个 CSS 属性的过渡效果。</p>
+<p>通过 <code>transform</code> 属性，设置一个触发条件，然后为元素分别设置触发前后的状态，最后给元素加上 <code>transition</code> 属性让浏览器自动补充中间帧来过渡，达到触发加载动画的效果。</p>
+<p><a class="link" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/transform"  target="_blank" rel="noopener"
+    >transform 使用方式参考 MDN 文档 -&gt;</a></p>
+<p><a class="link" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/transition"  target="_blank" rel="noopener"
+    >transition 使用方式参考 MDN 文档 -&gt;</a></p>
+<p><em><strong>但是，并不是所有的属性都能过渡</strong></em></p>
+<h2 id="animation">animation</h2>
+<p>通过 <code>@keyframes</code> 语法添加关键帧，然后用 <code>animation</code> 把关键帧赋予元素，使该元素依照 <code>@keyframe</code> 定义的行为运动。</p>
+<p><a class="link" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/animation"  target="_blank" rel="noopener"
+    >transition 使用方式参考 MDN 文档 -&gt;</a></p>
+<p> </p>
+<blockquote>
+<p><em><strong>资料来源：饥人谷、MDN</strong></em></p>
+</blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/css/">CSS</a>
+        
+            <a href="/tags/%E5%B8%83%E5%B1%80/">布局</a>
+        
+            <a href="/tags/%E5%8A%A8%E7%94%BB/">动画</a>
+        
+            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+        
+            <a href="/tags/flex/">Flex</a>
+        
+            <a href="/tags/grid/">Grid</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3&#43;Aro6EYUG4&#43;cU&#43;KJWu/X"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"integrity="sha384-g7c&#43;Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI&#43;sEnkvrMWph2EDg4"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC&#43;Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/post/css01/">
+        
+        
+            <div class="article-image">
+                <img src="/post/css01/css.ef6cc8d24d8a0112d88d729101c4e3d6_hu763ae0ba2371867e65fcd855d09be547_33178_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="css01" 
+                        data-hash="md5-72zI0k2KARLYjXKRAcTj1g==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">CSS基础概述</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 DesnLee
+    </section>
+    
+    <section class="powerby">
+        
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">浙ICP备2021009729号</a> <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.3.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
