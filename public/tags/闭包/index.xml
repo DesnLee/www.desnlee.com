@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>闭包 on DesnLee</title>
+    <link>/tags/%E9%97%AD%E5%8C%85/</link>
+    <description>Recent content in 闭包 on DesnLee</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 15 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/%E9%97%AD%E5%8C%85/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JavaScript 的闭包（Closure）</title>
+      <link>/post/closure/</link>
+      <pubDate>Sat, 15 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/closure/</guid>
+      <description>闭包是什么？ 闭包： 是指有权访问另一个函数作用域中的变量的函数。
+闭包无处不在，比如 jQuery 、zepto 的核心代码都包含在一个大的闭包中。
+先来看一个闭包 ⬇️ ⬇️ ⬇️
+const outSide = () =&amp;gt; { let a = 1 const inSide = () =&amp;gt; { a ++ console.log(a) } return inSide } const fn = outSide() fn() // 2 fn() // 3 fn() // 4 闭包的用途 闭包的实现原理，其实是利用了作用域链的特性。
+我们都知道作用域链就是在当前执行环境下访问某个变量时，如果不存在就向外层寻找，最终寻找到最外层也就是全局作用域，这样就形成了一个链条。
+隐藏变量，避免污染 在 Javascript 中，如果一个对象不再被引用，那么这个对象就会被 GC 回收，否则这个对象一直会保存在内存中。
+上面的代码，当函数 outSide 被执行后返回了函数 inSide ，函数inSide 的作用域链上有引用到函数 outSide 执行环境的变量 a，这个变量会被函数 fn 引用，所以 a 不会被垃圾回收机制处理掉，而是会留在内存中。这就形成了一个闭包。最后执行 fn() 依然能读取到变量 a。</description>
+    </item>
+    
+  </channel>
+</rss>
