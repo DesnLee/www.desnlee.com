@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>前端 on DesnLee</title>
+    <title>前端 on 坤坤的记录簿/DesnLee</title>
     <link>/tags/%E5%89%8D%E7%AB%AF/</link>
-    <description>Recent content in 前端 on DesnLee</description>
+    <description>Recent content in 前端 on 坤坤的记录簿/DesnLee</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 15 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/%E5%89%8D%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 21 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/%E5%89%8D%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>this、call、apply 和 bind</title>
+      <link>/post/this/</link>
+      <pubDate>Fri, 21 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/this/</guid>
+      <description>什么是 this ？ 在说 call、apply 和 bind 之前，我们先来看看 Javascript 中的 this 是什么。
+先来看一段代码 ⬇️ ⬇️ ⬇️
+var a = 1 const obj = { a: 2, fn: function() { console.log(this.a) } } const b = obj.fn obj.fn() // 2 b() // 1 上面代码中，虽然 obj.fn 和 b 指向同一个函数，但是执行结果不一样。这种差异的原因，就在于函数内使用了 this 关键字。 this 指的是函数运行时所在的环境。
+在内存图中，变量 obj 的值指向了一个地址，这个地址里保存了 a 和 fn ，而由于 fn 是一个函数，那么 fn 的值也是一个地址，在 fn 指向这个地址中保存了 fn 这个函数的函数体，所以这个函数是一个单独的值，那么他就可以在不同的环境中执行。
+ obj的内存图  this 就指的是函数运行时的环境。</description>
+    </item>
+    
     <item>
       <title>JavaScript 的闭包（Closure）</title>
       <link>/post/closure/</link>

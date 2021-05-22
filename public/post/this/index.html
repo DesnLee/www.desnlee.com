@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='什么是 this ？ 在说 call、apply 和 bind 之前，我们先来看看 Javascript 中的 this 是什么。
+先来看一段代码 ⬇️ ⬇️ ⬇️
+var a = 1 const obj = { a: 2, fn: function() { console.log(this.a) } } const b = obj.fn obj.fn() // 2 b() // 1 上面代码中，虽然 obj.fn 和 b 指向同一个函数，但是执行结果不一样。这种差异的原因，就在于函数内使用了 this 关键字。 this 指的是函数运行时所在的环境。
+在内存图中，变量 obj 的值指向了一个地址，这个地址里保存了 a 和 fn ，而由于 fn 是一个函数，那么 fn 的值也是一个地址，在 fn 指向这个地址中保存了 fn 这个函数的函数体，所以这个函数是一个单独的值，那么他就可以在不同的环境中执行。
+ obj的内存图  this 就指的是函数运行时的环境。'><title>this、call、apply 和 bind</title>
+
+<link rel='canonical' href='/post/this/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='this、call、apply 和 bind'>
+<meta property='og:description' content='什么是 this ？ 在说 call、apply 和 bind 之前，我们先来看看 Javascript 中的 this 是什么。
+先来看一段代码 ⬇️ ⬇️ ⬇️
+var a = 1 const obj = { a: 2, fn: function() { console.log(this.a) } } const b = obj.fn obj.fn() // 2 b() // 1 上面代码中，虽然 obj.fn 和 b 指向同一个函数，但是执行结果不一样。这种差异的原因，就在于函数内使用了 this 关键字。 this 指的是函数运行时所在的环境。
+在内存图中，变量 obj 的值指向了一个地址，这个地址里保存了 a 和 fn ，而由于 fn 是一个函数，那么 fn 的值也是一个地址，在 fn 指向这个地址中保存了 fn 这个函数的函数体，所以这个函数是一个单独的值，那么他就可以在不同的环境中执行。
+ obj的内存图  this 就指的是函数运行时的环境。'>
+<meta property='og:url' content='/post/this/'>
+<meta property='og:site_name' content='坤坤的记录簿/DesnLee'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='JavaScript' /><meta property='article:tag' content='JS' /><meta property='article:tag' content='this' /><meta property='article:tag' content='前端' /><meta property='article:published_time' content='2021-05-21T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-05-21T00:00:00&#43;00:00'/><meta property='og:image' content='/post/this/this.jpg' />
+<meta name="twitter:site" content="@DesnLee">
+    <meta name="twitter:creator" content="@DesnLee"><meta name="twitter:title" content="this、call、apply 和 bind">
+<meta name="twitter:description" content="什么是 this ？ 在说 call、apply 和 bind 之前，我们先来看看 Javascript 中的 this 是什么。
+先来看一段代码 ⬇️ ⬇️ ⬇️
+var a = 1 const obj = { a: 2, fn: function() { console.log(this.a) } } const b = obj.fn obj.fn() // 2 b() // 1 上面代码中，虽然 obj.fn 和 b 指向同一个函数，但是执行结果不一样。这种差异的原因，就在于函数内使用了 this 关键字。 this 指的是函数运行时所在的环境。
+在内存图中，变量 obj 的值指向了一个地址，这个地址里保存了 a 和 fn ，而由于 fn 是一个函数，那么 fn 的值也是一个地址，在 fn 指向这个地址中保存了 fn 这个函数的函数体，所以这个函数是一个单独的值，那么他就可以在不同的环境中执行。
+ obj的内存图  this 就指的是函数运行时的环境。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/post/this/this.jpg' />
+    <link rel="shortcut icon" href="/favicon.ico?v=1.0" />
+
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_huf8d8793edf8af3e588b4b4564e206141_16354_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🇨🇳</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="/">坤坤的记录簿/DesnLee</a></h1>
+        <h2 class="site-description">脆弱的人才会四处游说自己的不幸，坚强的人只会不动声色地愈渐强大。这里是 DesnLee 的前端博客，欢迎你的来访！</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-3d-cube-sphere" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M6 17.6l-2 -1.1v-2.5" />
+    <path d="M4 10v-2.5l2 -1.1" />
+    <path d="M10 4.1l2 -1.1l2 1.1" />
+    <path d="M18 6.4l2 1.1v2.5" />
+    <path d="M20 14v2.5l-2 1.12" />
+    <path d="M14 19.9l-2 1.1l-2 -1.1" />
+    <line x1="12" y1="12" x2="14" y2="10.9" />
+    <line x1="18" y1="8.6" x2="20" y2="7.5" />
+    <line x1="12" y1="12" x2="12" y2="14.5" />
+    <line x1="12" y1="18.5" x2="12" y2="21" />
+    <path d="M12 12l-2 -1.12" />
+    <line x1="6" y1="8.6" x2="4" y2="7.5" />
+</svg>
+                
+                <span>Categories</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>Dark Mode</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="/" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/post/this/">
+                <img src="/post/this/this_hu4886455551a131d8595f93ccd1eb8852_41492_800x0_resize_q75_box.jpg"
+                        srcset="/post/this/this_hu4886455551a131d8595f93ccd1eb8852_41492_800x0_resize_q75_box.jpg 800w, /post/this/this_hu4886455551a131d8595f93ccd1eb8852_41492_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="406" 
+                        loading="lazy"
+                        alt="Featured image of post this、call、apply 和 bind" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/javascript/" style="background-color: #F9A826; color: #fff;">
+                JavaScript
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/this/">this、call、apply 和 bind</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">May 21, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="什么是-this-">什么是 <code>this</code> ？</h1>
+<p>在说 <code>call</code>、<code>apply</code> 和 <code>bind</code> 之前，我们先来看看 Javascript 中的 <code>this</code> 是什么。</p>
+<p>先来看一段代码 ⬇️ ⬇️ ⬇️</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="kr">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">a</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nx">fn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span><span class="p">()</span> <span class="c1">// 2
+</span><span class="c1"></span><span class="nx">b</span><span class="p">()</span> <span class="c1">// 1
+</span></code></pre></div><p>上面代码中，虽然 <code>obj.fn</code> 和 <code>b</code> 指向同一个函数，但是执行结果不一样。这种差异的原因，就在于函数内使用了 <code>this</code> 关键字。 <code>this</code> 指的是函数运行时所在的环境。</p>
+<p>在内存图中，变量 <code>obj</code> 的值指向了一个地址，这个地址里保存了 <code>a</code> 和 <code>fn</code> ，而由于 <code>fn</code> 是一个函数，那么 <code>fn</code> 的值也是一个地址，在 <code>fn</code> 指向这个地址中保存了 <code>fn</code> 这个函数的函数体，所以这个函数是一个单独的值，那么他就可以在不同的环境中执行。</p>
+<p><figure style="flex-grow: 226; flex-basis: 544px">
+		<a href="/post/this/neicuntu.png" data-size="1868x824"><img src="/post/this/neicuntu.png"
+				srcset="/post/this/neicuntu_hu8b3ff73234a74abfc046d5f87135430c_76197_480x0_resize_box_2.png 480w, /post/this/neicuntu_hu8b3ff73234a74abfc046d5f87135430c_76197_1024x0_resize_box_2.png 1024w"
+				width="1868"
+				height="824"
+				loading="lazy"
+				alt="obj的内存图">
+		</a>
+		
+		<figcaption>obj的内存图</figcaption>
+		
+	</figure>
+<strong><code>this</code> 就指的是函数运行时的环境。</strong></p>
+<ul>
+<li>所以当运行 <code>obj.fn()</code> 时，<code>fn()</code> 的运行环境是 <code>obj</code>，所以这时候 <code>this.a</code> 就是 <code>obj.a</code> ；</li>
+<li>当运行 <code>b()</code> 时，<code>b()</code> 的运行环境是 <code>window</code>，所以这时候 <code>this.a</code> 就是 <code>window.a</code> 。</li>
+</ul>
+<blockquote>
+<p>由此得出，<code>this</code> 的值就是 <code>.</code> 前面的环境。</p>
+</blockquote>
+<h1 id="callapply-和-bind">call、apply 和 bind</h1>
+<p>了解了 <code>this</code> 之后，就可以说说 <code>call</code>、<code>apply</code> 和 <code>bind</code> 了。</p>
+<h2 id="call">call</h2>
+<p><a class="link" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/call"  target="_blank" rel="noopener"
+    >MDN对call的解释 -&gt;</a></p>
+<blockquote>
+<p><strong>MDN：</strong>  <code>call()</code> 允许为不同的对象分配和调用属于一个对象的函数/方法。 <code>call()</code> 提供新的 <code>this</code> 值给当前调用的函数/方法。你可以使用 <code>call</code> 来实现继承：写一个方法，然后让另外一个新的对象来继承它（而不是在新对象中再写一次这个方法）。</p>
+</blockquote>
+<p>通俗点讲就是，<code>call</code> 可以改变调用函数时的 <code>this</code> 值。以便我们可以在其他的地方调用同一个方法而不用再写一次该方法。</p>
+<p>了解了概念，那就看看怎么用吧。还是上面的代码，我们试着用 <code>call</code> 来调用它。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">//当我这样写的时候，得到的结果还是 2
+</span><span class="c1"></span><span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>  <span class="c1">//2
+</span><span class="c1"></span>
+<span class="c1">//但是，当我这样写的时候，结果就和上面不同了
+</span><span class="c1"></span><span class="nx">b</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>  <span class="c1">//2
+</span></code></pre></div><p>在调用 <code>b()</code> 的时候，使用 <code>call</code> 改变了 <code>this</code> 的指向，让他仍然指向 <code>obj</code> ，于是运行 <code>b()</code> 的结果没我们就得到了和 <code>obj.fn()</code> 一样的结果了。</p>
+<hr>
+<p><strong>总结一下 <code>call</code> 的用法：</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arg1</span><span class="p">,</span> <span class="nx">arg2</span><span class="p">)</span>
+</code></pre></div><blockquote>
+<p><code>call</code> 的第一个参数是你要指定的 <code>this</code>，之后的参数就是函数自身的参数。</p>
+</blockquote>
+<h2 id="apply">apply</h2>
+<p><a class="link" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/apply"  target="_blank" rel="noopener"
+    >MDN对apply的解释 -&gt;</a></p>
+<blockquote>
+<p><code>call()</code> 方法的作用和 <code>apply()</code> 方法类似，区别就是 <code>call()</code> 方法接受的是参数列表，而 <code>apply()</code> 方法接受的是一个参数数组。</p>
+</blockquote>
+<p>直接来看用法吧：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="p">[</span><span class="nx">arg1</span><span class="p">,</span> <span class="nx">arg2</span><span class="p">])</span>
+</code></pre></div><blockquote>
+<p><code>apply</code> 的第一个参数是你要指定的 <code>this</code>，之后的数组就是函数自身的参数组成的数组。</p>
+</blockquote>
+<h2 id="bind">bind</h2>
+<p><a class="link" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind"  target="_blank" rel="noopener"
+    >MDN对bind的解释 -&gt;</a></p>
+<blockquote>
+<p><code>bind()</code> 方法创建一个新的函数，在 <code>bind()</code> 被调用时，这个新函数的 <code>this</code> 被指定为 <code>bind()</code> 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。</p>
+</blockquote>
+<p><strong><code>bind()</code> 返回一个原函数的拷贝，并拥有指定的 this 值和初始参数。</strong></p>
+<p>还是上面的代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>
+
+<span class="nx">c</span><span class="p">()</span>  <span class="c1">//2
+</span><span class="c1"></span><span class="nx">c</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span>  <span class="c1">//2
+</span><span class="c1"></span><span class="nx">c</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>  <span class="c1">//2
+</span></code></pre></div><p>我们让 <code>c</code> 等于 <code>fn.bind(obj)</code> 之后我们发现，使用 <code>call</code> 指定 <code>c()</code> 的 <code>this</code> 为任意对象，都不会改变运行结果。这就是因为<code>bind()</code> 返回一个原函数的拷贝，并拥有指定的 <code>this</code> 值和初始参数。</p>
+<p><strong>他返回的是一个新函数， <code>this</code> 是创建时候指定的 <code>this</code> 值，并且不会被 <code>call</code> <code>apply</code> 等改变。</strong></p>
+<p>与 <code>call</code> 和 <code>apply</code> 不同的是，上面两个在指定了 <code>this</code> 之后立即执行，而 <code>bind</code> 返回的是一个新的函数，在改变了函数的 <code>this</code> 的同时不会执行函数，可以在之后需要的时候再调用。</p>
+<hr>
+<blockquote>
+<p>以上就是 this 、call 、 apply 和 bind 的简单讲解了。</p>
+</blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/javascript/">JavaScript</a>
+        
+            <a href="/tags/js/">JS</a>
+        
+            <a href="/tags/this/">this</a>
+        
+            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3&#43;Aro6EYUG4&#43;cU&#43;KJWu/X"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"integrity="sha384-g7c&#43;Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI&#43;sEnkvrMWph2EDg4"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC&#43;Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/post/closure/">
+        
+        
+            <div class="article-image">
+                <img src="/post/closure/closure.f5dcb8bab64aa2d48acacbbeb6aaf69f_hu21628b3817d2300a5e695c2e226aa99e_133141_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="closure" 
+                        data-hash="md5-9dy4urZKotSKysu&#43;tqr2nw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JavaScript 的闭包（Closure）</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/dom01/">
+        
+        
+            <div class="article-image">
+                <img src="/post/dom01/dom1.6817c76fb83238450c1011d08fdbbf4d_hud97e667648a730b513b43e90f03dd833_30619_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="dom01" 
+                        data-hash="md5-aBfHb7gyOEUMEBHQj9u/TQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">DOM 事件与事件委托</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/jquery01/">
+        
+        
+            <div class="article-image">
+                <img src="/post/jquery01/jquery.cddad3b26f77785bc6f2b8527cfe6588_hu8ecff6ff9b6bcd20ee9d2ea60e2922b7_54313_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="jquery01" 
+                        data-hash="md5-zdrTsm93eFvG8rhSfP5liA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">jQuery 常用操作手册</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/javascript06/">
+        
+        
+            <div class="article-image">
+                <img src="/post/javascript06/js_function.928ed6f88fc7fb39ed4bb984b1147753_hudc705b281e7f3aa7c988f4e75983e055_40234_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="javascript06" 
+                        data-hash="md5-ko7W&#43;I/H&#43;zntS7mEsRR3Uw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JavaScript函数的执行时机</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/javascript05/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JavaScript对象</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 坤坤的记录簿/DesnLee
+    </section>
+    
+    <section class="powerby">
+        
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">浙ICP备2021009729号</a> <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.3.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
