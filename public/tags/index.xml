@@ -6,7 +6,43 @@
     <description>Recent content in Tags on 坤坤的记录簿/DesnLee</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 22 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 May 2021 09:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JS</title>
+      <link>/tags/js/</link>
+      <pubDate>Tue, 25 May 2021 09:00:00 +0000</pubDate>
+      
+      <guid>/tags/js/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>前端</title>
+      <link>/tags/%E5%89%8D%E7%AB%AF/</link>
+      <pubDate>Tue, 25 May 2021 09:00:00 +0000</pubDate>
+      
+      <guid>/tags/%E5%89%8D%E7%AB%AF/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>去重</title>
+      <link>/tags/%E5%8E%BB%E9%87%8D/</link>
+      <pubDate>Tue, 25 May 2021 09:00:00 +0000</pubDate>
+      
+      <guid>/tags/%E5%8E%BB%E9%87%8D/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>算法</title>
+      <link>/tags/%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Tue, 25 May 2021 09:00:00 +0000</pubDate>
+      
+      <guid>/tags/%E7%AE%97%E6%B3%95/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>http</title>
       <link>/tags/http/</link>
@@ -26,29 +62,11 @@
     </item>
     
     <item>
-      <title>前端</title>
-      <link>/tags/%E5%89%8D%E7%AB%AF/</link>
-      <pubDate>Sat, 22 May 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/%E5%89%8D%E7%AB%AF/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>JavaScript</title>
       <link>/tags/javascript/</link>
       <pubDate>Fri, 21 May 2021 00:00:00 +0000</pubDate>
       
       <guid>/tags/javascript/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>JS</title>
-      <link>/tags/js/</link>
-      <pubDate>Fri, 21 May 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/js/</guid>
       <description></description>
     </item>
     
