@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>jQuery on 坤坤的记录簿/DesnLee</title>
+    <title>jQuery on DesnLee</title>
     <link>/tags/jquery/</link>
-    <description>Recent content in jQuery on 坤坤的记录簿/DesnLee</description>
+    <description>Recent content in jQuery on DesnLee</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Thu, 29 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/jquery/index.xml" rel="self" type="application/rss+xml" />
