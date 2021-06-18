@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Promise 的用途 在 JavaScript 的世界中，所有代码都是单线程执行的。由于这个特性，导致 JavaScript 的所有网络操作，浏览器事件，都必须是异步执行。
+而 Promise 是异步编程的一种解决方案，比传统的解决方案（回调函数和事件）更合理更强大。它由社区最早提出和实现，ES6将其写进了语言标准，统一了语法，原生提供了 Promise。
+所谓 Promise ，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。
+本质上 Promise 是一个函数返回的对象，它代表了一个异步操作的最终完成或者失败。我们可以在它上面绑定回调函数，这样我们就不需要在一开始把回调函数作为参数传入这个函数了。
+创建一个 new Promise return new Promise((resolve,reject)=&amp;gt;{}) 一个 Promise 必然处于以下几种状态之一：
+ pending： 待定，初始状态，既没有被兑现，也没有被拒绝。 fulfilled： 已兑现，意味着操作成功完成。 rejected： 已拒绝，意味着操作失败。     resolve 函数的作用是，将 Promise 对象的状态从 &amp;ldquo;未完成&amp;rdquo; 变为 &amp;ldquo;成功&amp;rdquo; ，即从 pending 变为 resolved ，在异步操作成功时调用，并将异步操作的结果，作为参数传递出去；
+  reject 函数的作用是，将 Promise 对象的状态从 &amp;ldquo;未完成&amp;rdquo; 变为 &amp;ldquo;失败&amp;rdquo; ，即从 pending 变为 rejected ，在异步操作失败时调用，并将异步操作报出的错误，作为参数传递出去。
+   如何使用 Promise.prototype.then 待定状态的 Promise 对象要么会通过一个值被兑现（fulfilled），要么会通过一个 原因/错误 被拒绝（rejected）。当这些情况之一发生时，我们用 promise 的 then 方法排列起来的相关处理程序就会被调用。'><title>Promise</title>
+
+<link rel='canonical' href='/post/promise/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Promise'>
+<meta property='og:description' content='Promise 的用途 在 JavaScript 的世界中，所有代码都是单线程执行的。由于这个特性，导致 JavaScript 的所有网络操作，浏览器事件，都必须是异步执行。
+而 Promise 是异步编程的一种解决方案，比传统的解决方案（回调函数和事件）更合理更强大。它由社区最早提出和实现，ES6将其写进了语言标准，统一了语法，原生提供了 Promise。
+所谓 Promise ，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。
+本质上 Promise 是一个函数返回的对象，它代表了一个异步操作的最终完成或者失败。我们可以在它上面绑定回调函数，这样我们就不需要在一开始把回调函数作为参数传入这个函数了。
+创建一个 new Promise return new Promise((resolve,reject)=&amp;gt;{}) 一个 Promise 必然处于以下几种状态之一：
+ pending： 待定，初始状态，既没有被兑现，也没有被拒绝。 fulfilled： 已兑现，意味着操作成功完成。 rejected： 已拒绝，意味着操作失败。     resolve 函数的作用是，将 Promise 对象的状态从 &amp;ldquo;未完成&amp;rdquo; 变为 &amp;ldquo;成功&amp;rdquo; ，即从 pending 变为 resolved ，在异步操作成功时调用，并将异步操作的结果，作为参数传递出去；
+  reject 函数的作用是，将 Promise 对象的状态从 &amp;ldquo;未完成&amp;rdquo; 变为 &amp;ldquo;失败&amp;rdquo; ，即从 pending 变为 rejected ，在异步操作失败时调用，并将异步操作报出的错误，作为参数传递出去。
+   如何使用 Promise.prototype.then 待定状态的 Promise 对象要么会通过一个值被兑现（fulfilled），要么会通过一个 原因/错误 被拒绝（rejected）。当这些情况之一发生时，我们用 promise 的 then 方法排列起来的相关处理程序就会被调用。'>
+<meta property='og:url' content='/post/promise/'>
+<meta property='og:site_name' content='DesnLee'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Promise' /><meta property='article:tag' content='异步' /><meta property='article:tag' content='JavaScript' /><meta property='article:tag' content='JS' /><meta property='article:tag' content='前端' /><meta property='article:published_time' content='2021-06-17T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-06-17T00:00:00&#43;00:00'/><meta property='og:image' content='/post/promise/promise.jpg' />
+<meta name="twitter:site" content="@DesnLee">
+    <meta name="twitter:creator" content="@DesnLee"><meta name="twitter:title" content="Promise">
+<meta name="twitter:description" content="Promise 的用途 在 JavaScript 的世界中，所有代码都是单线程执行的。由于这个特性，导致 JavaScript 的所有网络操作，浏览器事件，都必须是异步执行。
+而 Promise 是异步编程的一种解决方案，比传统的解决方案（回调函数和事件）更合理更强大。它由社区最早提出和实现，ES6将其写进了语言标准，统一了语法，原生提供了 Promise。
+所谓 Promise ，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。
+本质上 Promise 是一个函数返回的对象，它代表了一个异步操作的最终完成或者失败。我们可以在它上面绑定回调函数，这样我们就不需要在一开始把回调函数作为参数传入这个函数了。
+创建一个 new Promise return new Promise((resolve,reject)=&amp;gt;{}) 一个 Promise 必然处于以下几种状态之一：
+ pending： 待定，初始状态，既没有被兑现，也没有被拒绝。 fulfilled： 已兑现，意味着操作成功完成。 rejected： 已拒绝，意味着操作失败。     resolve 函数的作用是，将 Promise 对象的状态从 &amp;ldquo;未完成&amp;rdquo; 变为 &amp;ldquo;成功&amp;rdquo; ，即从 pending 变为 resolved ，在异步操作成功时调用，并将异步操作的结果，作为参数传递出去；
+  reject 函数的作用是，将 Promise 对象的状态从 &amp;ldquo;未完成&amp;rdquo; 变为 &amp;ldquo;失败&amp;rdquo; ，即从 pending 变为 rejected ，在异步操作失败时调用，并将异步操作报出的错误，作为参数传递出去。
+   如何使用 Promise.prototype.then 待定状态的 Promise 对象要么会通过一个值被兑现（fulfilled），要么会通过一个 原因/错误 被拒绝（rejected）。当这些情况之一发生时，我们用 promise 的 then 方法排列起来的相关处理程序就会被调用。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/post/promise/promise.jpg' />
+    <link rel="shortcut icon" href="/favicon.ico?v=1.0" />
+
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_huf8d8793edf8af3e588b4b4564e206141_16354_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🇨🇳</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="/">DesnLee</a></h1>
+        <h2 class="site-description">脆弱的人才会四处游说自己的不幸，坚强的人只会不动声色地愈渐强大。这里是 DesnLee 的前端博客，欢迎你的来访！</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-3d-cube-sphere" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M6 17.6l-2 -1.1v-2.5" />
+    <path d="M4 10v-2.5l2 -1.1" />
+    <path d="M10 4.1l2 -1.1l2 1.1" />
+    <path d="M18 6.4l2 1.1v2.5" />
+    <path d="M20 14v2.5l-2 1.12" />
+    <path d="M14 19.9l-2 1.1l-2 -1.1" />
+    <line x1="12" y1="12" x2="14" y2="10.9" />
+    <line x1="18" y1="8.6" x2="20" y2="7.5" />
+    <line x1="12" y1="12" x2="12" y2="14.5" />
+    <line x1="12" y1="18.5" x2="12" y2="21" />
+    <path d="M12 12l-2 -1.12" />
+    <line x1="6" y1="8.6" x2="4" y2="7.5" />
+</svg>
+                
+                <span>Categories</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>Dark Mode</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="/" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/post/promise/">
+                <img src="/post/promise/promise_hu60ae95ca69e211d4755e493da4f6779a_57685_800x0_resize_q75_box.jpg"
+                        srcset="/post/promise/promise_hu60ae95ca69e211d4755e493da4f6779a_57685_800x0_resize_q75_box.jpg 800w, /post/promise/promise_hu60ae95ca69e211d4755e493da4f6779a_57685_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="406" 
+                        loading="lazy"
+                        alt="Featured image of post Promise" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/javascript/" style="background-color: #F9A826; color: #fff;">
+                JavaScript
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/promise/">Promise</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jun 17, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="promise-的用途">Promise 的用途</h1>
+<p>在 JavaScript 的世界中，所有代码都是单线程执行的。由于这个特性，导致 JavaScript 的所有网络操作，浏览器事件，都必须是异步执行。</p>
+<p>而 Promise 是异步编程的一种解决方案，比传统的解决方案（回调函数和事件）更合理更强大。它由社区最早提出和实现，ES6将其写进了语言标准，统一了语法，原生提供了 Promise。</p>
+<p>所谓 Promise ，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。</p>
+<p>本质上 Promise 是一个函数返回的对象，它代表了一个异步操作的最终完成或者失败。我们可以在它上面绑定回调函数，这样我们就不需要在一开始把回调函数作为参数传入这个函数了。</p>
+<h1 id="创建一个-new-promise">创建一个 new Promise</h1>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="nx">reject</span><span class="p">)=&gt;{})</span>
+</code></pre></div><p>一个 Promise 必然处于以下几种状态之一：</p>
+<ul>
+<li><strong>pending：</strong> 待定，初始状态，既没有被兑现，也没有被拒绝。</li>
+<li><strong>fulfilled：</strong> 已兑现，意味着操作成功完成。</li>
+<li><strong>rejected：</strong> 已拒绝，意味着操作失败。</li>
+</ul>
+<blockquote>
+<ul>
+<li>
+<p><code>resolve</code> 函数的作用是，将 Promise 对象的状态从 &ldquo;未完成&rdquo; 变为 &ldquo;成功&rdquo; ，即从 pending 变为 resolved ，在异步操作成功时调用，并将异步操作的结果，作为参数传递出去；</p>
+</li>
+<li>
+<p><code>reject</code> 函数的作用是，将 Promise 对象的状态从 &ldquo;未完成&rdquo; 变为 &ldquo;失败&rdquo; ，即从 pending 变为 rejected ，在异步操作失败时调用，并将异步操作报出的错误，作为参数传递出去。</p>
+</li>
+</ul>
+</blockquote>
+<h1 id="如何使用-promiseprototypethen">如何使用 Promise.prototype.then</h1>
+<p>待定状态的 Promise 对象要么会通过一个值被兑现（fulfilled），要么会通过一个 原因/错误 被拒绝（rejected）。当这些情况之一发生时，我们用 promise 的 then 方法排列起来的相关处理程序就会被调用。</p>
+<p>then() 方法是为 Promise 实例添加状态改变时的回调函数，它返回一个 Promise 对象。</p>
+<p>then方法最多需要有两个参数：Promise 的成功和失败情况的回调函数。第一个参数是 resolved 状态的回调函数，第二个参数（可选）是 rejected 状态的回调函数。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">fn</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;成功！&#39;</span><span class="p">)</span>
+  <span class="c1">// or
+</span><span class="c1"></span>  <span class="c1">// reject(new Error(&#34;出错了！&#34;));
+</span><span class="c1"></span><span class="p">});</span>
+
+<span class="nx">p1</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">value</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span> <span class="c1">// 成功！
+</span><span class="c1"></span><span class="p">},</span> <span class="nx">reason</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">reason</span><span class="p">);</span> <span class="c1">// 出错了！
+</span><span class="c1"></span><span class="p">});</span>
+</code></pre></div><h3 id="promise的链式调用">Promise的链式调用</h3>
+<p>因为 <code>Promise.prototype.then</code> 方法返回的是一个新生成的 promise，这个对象可以被非强制性的用来做链式调用，就像这样：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="nx">thisPromise</span> <span class="o">=</span>
+  <span class="p">(</span><span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="nx">fn1</span><span class="p">))</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">fn2</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">fn3</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">fn4</span><span class="p">);</span>
+</code></pre></div><h1 id="如何使用-promiseall">如何使用 Promise.all</h1>
+<p><code>Promise.all()</code> 方法接收一个 promise 的 iterable 类型的输入，并且只返回一个 Promise 实例。</p>
+<p><code>Promise.all()</code> 实际上是一个 promise，它将一组 promise 作为输入（可迭代）。然后，当所有 promise <strong>都执行成功</strong> 或 <strong>其中任何一个执行失败</strong> 时，它就会执行。</p>
+<ul>
+<li>该 Promise 的 resolve 回调执行是在所有输入的 promise 的 resolve 回调都结束（即全部执行成功），或者输入的 iterable 里没有 promise 了的时候。</li>
+<li>它的reject 回调执行是只要任何一个输入的 promise 的 reject 回调执行（即任何一个执行失败）或者输入不合法的 promise 就会立即抛出错误，并且 reject 的是 <strong>第一个</strong> 抛出的错误信息。</li>
+</ul>
+<h3 id="promiseall-的使用">Promise.all 的使用</h3>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">p1</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nx">p2</span> <span class="o">=</span> <span class="mi">1337</span>
+<span class="kd">let</span> <span class="nx">p3</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">])</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">values</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">values</span><span class="p">)</span>
+    <span class="p">})</span>
+
+<span class="c1">// [3, 1337, &#34;foo&#34;]
+</span></code></pre></div><h1 id="如何使用-promiserace">如何使用 Promise.race</h1>
+<p><code>Promise.race()</code> 方法接收一个 promise 的 iterable 类型的输入，并且只返回一个 Promise 实例。</p>
+<p>只要给定的迭代中的一个 promise 解决或拒绝，就采用第一个执行的 promise 的值作为它的值，从而异步地解析或拒绝（一旦堆栈为空），即 <code>Promise.race()</code> 方法返回的 promise 的状态与传入的 promise 的第一个 promise 执行状态相同。</p>
+<blockquote>
+<p>如果传的迭代是空的，则返回的 promise 将永远等待。</p>
+</blockquote>
+<h3 id="promiserace-的使用">Promise.race 的使用</h3>
+<p>例中虽然传入的顺序为 p1 &gt; p2，但是 p1 和 p2 的执行顺序为 p2 &gt; p1。</p>
+<p>由于 <code>Promise.race()</code> 返回的 promise 的值与第一个执行的 promise 的值相同，所以例中虽然先传入 p1，但 race 的值为 p2。</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="mi">50000</span><span class="p">,</span> <span class="s1">&#39;p1&#39;</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="kd">let</span> <span class="nx">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;p2&#39;</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nb">Promise</span><span class="p">.</span><span class="nx">race</span><span class="p">([</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">])</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">value</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
+    <span class="p">})</span>
+
+<span class="c1">// p2
+</span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/promise/">Promise</a>
+        
+            <a href="/tags/%E5%BC%82%E6%AD%A5/">异步</a>
+        
+            <a href="/tags/javascript/">JavaScript</a>
+        
+            <a href="/tags/js/">JS</a>
+        
+            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3&#43;Aro6EYUG4&#43;cU&#43;KJWu/X"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"integrity="sha384-g7c&#43;Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI&#43;sEnkvrMWph2EDg4"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC&#43;Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/post/this/">
+        
+        
+            <div class="article-image">
+                <img src="/post/this/this.5662349bb282ba423efc4f1eba32a2e8_hu4886455551a131d8595f93ccd1eb8852_41492_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="this" 
+                        data-hash="md5-VmI0m7KCukI&#43;/E8eujKi6A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">this、call、apply 和 bind</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/closure/">
+        
+        
+            <div class="article-image">
+                <img src="/post/closure/closure.f5dcb8bab64aa2d48acacbbeb6aaf69f_hu21628b3817d2300a5e695c2e226aa99e_133141_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="closure" 
+                        data-hash="md5-9dy4urZKotSKysu&#43;tqr2nw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JavaScript 的闭包（Closure）</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/dom01/">
+        
+        
+            <div class="article-image">
+                <img src="/post/dom01/dom1.6817c76fb83238450c1011d08fdbbf4d_hud97e667648a730b513b43e90f03dd833_30619_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="dom01" 
+                        data-hash="md5-aBfHb7gyOEUMEBHQj9u/TQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">DOM 事件与事件委托</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/jquery01/">
+        
+        
+            <div class="article-image">
+                <img src="/post/jquery01/jquery.cddad3b26f77785bc6f2b8527cfe6588_hu8ecff6ff9b6bcd20ee9d2ea60e2922b7_54313_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="jquery01" 
+                        data-hash="md5-zdrTsm93eFvG8rhSfP5liA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">jQuery 常用操作手册</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/javascript06/">
+        
+        
+            <div class="article-image">
+                <img src="/post/javascript06/js_function.928ed6f88fc7fb39ed4bb984b1147753_hudc705b281e7f3aa7c988f4e75983e055_40234_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="javascript06" 
+                        data-hash="md5-ko7W&#43;I/H&#43;zntS7mEsRR3Uw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JavaScript函数的执行时机</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 DesnLee
+    </section>
+    
+    <section class="powerby">
+        
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">浙ICP备2021009729号-2</a> <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.3.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

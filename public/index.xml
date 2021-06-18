@@ -6,7 +6,22 @@
         <description>Recent content on DesnLee</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-CN</language>
-        <lastBuildDate>Tue, 25 May 2021 09:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 17 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Promise</title>
+        <link>/post/promise/</link>
+        <pubDate>Thu, 17 Jun 2021 00:00:00 +0000</pubDate>
+        
+        <guid>/post/promise/</guid>
+        <description>&lt;img src="/post/promise/promise.jpg" alt="Featured image of post Promise" /&gt;Promise 的用途 在 JavaScript 的世界中，所有代码都是单线程执行的。由于这个特性，导致 JavaScript 的所有网络操作，浏览器事件，都必须是异步执行。
+而 Promise 是异步编程的一种解决方案，比传统的解决方案（回调函数和事件）更合理更强大。它由社区最早提出和实现，ES6将其写进了语言标准，统一了语法，原生提供了 Promise。
+所谓 Promise ，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。
+本质上 Promise 是一个函数返回的对象，它代表了一个异步操作的最终完成或者失败。我们可以在它上面绑定回调函数，这样我们就不需要在一开始把回调函数作为参数传入这个函数了。
+创建一个 new Promise return new Promise((resolve,reject)=&amp;gt;{}) 一个 Promise 必然处于以下几种状态之一：
+ pending： 待定，初始状态，既没有被兑现，也没有被拒绝。 fulfilled： 已兑现，意味着操作成功完成。 rejected： 已拒绝，意味着操作失败。     resolve 函数的作用是，将 Promise 对象的状态从 &amp;ldquo;未完成&amp;rdquo; 变为 &amp;ldquo;成功&amp;rdquo; ，即从 pending 变为 resolved ，在异步操作成功时调用，并将异步操作的结果，作为参数传递出去；
+  reject 函数的作用是，将 Promise 对象的状态从 &amp;ldquo;未完成&amp;rdquo; 变为 &amp;ldquo;失败&amp;rdquo; ，即从 pending 变为 rejected ，在异步操作失败时调用，并将异步操作报出的错误，作为参数传递出去。
+   如何使用 Promise.prototype.then 待定状态的 Promise 对象要么会通过一个值被兑现（fulfilled），要么会通过一个 原因/错误 被拒绝（rejected）。当这些情况之一发生时，我们用 promise 的 then 方法排列起来的相关处理程序就会被调用。</description>
+        </item>
+        <item>
         <title>数组去重的几个方法</title>
         <link>/post/unique/</link>
         <pubDate>Tue, 25 May 2021 09:00:00 +0000</pubDate>
