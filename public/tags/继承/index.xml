@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>继承 on DesnLee</title>
+    <link>/tags/%E7%BB%A7%E6%89%BF/</link>
+    <description>Recent content in 继承 on DesnLee</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 06 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/%E7%BB%A7%E6%89%BF/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>原型链与继承</title>
+      <link>/post/prototypechain/</link>
+      <pubDate>Tue, 06 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/prototypechain/</guid>
+      <description>原型链 JavaScript 每个对象都有一个私有属性 __proto__ 指向它的构造函数的原型对象 prototype。该原型对象也有一个 __proto__，层层向上直到一个对象的原型对象__proto__为 null，作为这个原型链中的最后一个环节。
+当试图访问一个对象的属性时，它不仅仅在该对象上搜寻，会在该对象的原型链上依次层层向上搜索，直到找到一个名字匹配的属性或到达原型链的末尾。
+基于原型链的继承 在 JavaScript 中，函数是允许拥有属性的。所有的函数会有一个特别的属性 prototype 。可以通过 Test.prototype 为原型添加属性。
+然后我们可以通过 new 操作符来创建基于这个原型对象的 Test 实例。使用 new 操作符，只需在调用 Test 函数语句之前添加 new。这样，便可以获得这个函数的一个实例对象。一些属性就可以添加到该原型对象中。
+function Test(){} //创建一个函数 Test.prototype.f1 = `f1` //为该函数原型添加自定义属性 let test1 = new Test() //基于 Test 函数创建函数实例 test1.f1 // &amp;#34;f1&amp;#34; 基于 class 的继承 ECMAScript6 引入了一套新的关键字用来实现 class，它仍然基于原型。
+class Person { constructor(name, age) { this.name = name; this.age = age; } get hello() { console.log(`Hello, my name is ${this.</description>
+    </item>
+    
+  </channel>
+</rss>

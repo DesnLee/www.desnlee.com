@@ -6,7 +6,38 @@
     <description>Recent content in 前端 on DesnLee</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 17 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/%E5%89%8D%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 14 Jul 2021 08:00:00 +0000</lastBuildDate><atom:link href="/tags/%E5%89%8D%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JavaScript 的跨域</title>
+      <link>/post/crossorigin/</link>
+      <pubDate>Wed, 14 Jul 2021 08:00:00 +0000</pubDate>
+      
+      <guid>/post/crossorigin/</guid>
+      <description>什么是同源 如果两个 URL 的 protocol、port(如果有指定的话)和 host 都相同的话，则这两个 URL 是同源。
+同源策略是一个重要的安全策略，它用于限制一个 origin 的文档或者它加载的脚本如何能与另一个源的资源进行交互。它能帮助阻隔恶意文档，减少可能被攻击的媒介。
+例如： 如果 JS 运行在 源A 里，那么就只能获取 源A 的数据，不能获取 源B 的数据，即不允许跨域。
+什么是跨域 同源策略控制不同源之间的交互，例如在使用 XMLHttpRequest 或 &amp;lt;img&amp;gt; 标签时则会受到同源策略的约束。
+这些交互通常分为三类：
+ 跨域写操作（Cross-origin writes）一般是被允许的。例如链接（links），重定向以及表单提交。特定少数的HTTP请求需要添加 preflight。 跨域资源嵌入（Cross-origin embedding）一般是被允许。 跨域读操作（Cross-origin reads）一般是不被允许的，但常可以通过内嵌资源来巧妙的进行读取访问。  跨域就是在不同源之间进行数据交互。
+JSONP 跨域 由于同源策略，一般来说不同源之间无法进行沟通，而 HTML 的 &amp;lt;script&amp;gt; 元素是一个例外。利用 &amp;lt;script&amp;gt; 元素的这个开放策略，网页可以得到从其他来源动态产生的 JSON 资料，而这种使用模式就是所谓的 JSONP。
+举一个具体例子，test1.com 想要访问 test2.com 的数据，
+ 首先 test2.com 先将数据写入一个文件 test2.com/data.js; test1.com 事先定义好一个函数 window.callback ; test1.com 通过 &amp;lt;script&amp;gt; 引用 test2.com/data.js ; 然后 data.</description>
+    </item>
+    
+    <item>
+      <title>原型链与继承</title>
+      <link>/post/prototypechain/</link>
+      <pubDate>Tue, 06 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/prototypechain/</guid>
+      <description>原型链 JavaScript 每个对象都有一个私有属性 __proto__ 指向它的构造函数的原型对象 prototype。该原型对象也有一个 __proto__，层层向上直到一个对象的原型对象__proto__为 null，作为这个原型链中的最后一个环节。
+当试图访问一个对象的属性时，它不仅仅在该对象上搜寻，会在该对象的原型链上依次层层向上搜索，直到找到一个名字匹配的属性或到达原型链的末尾。
+基于原型链的继承 在 JavaScript 中，函数是允许拥有属性的。所有的函数会有一个特别的属性 prototype 。可以通过 Test.prototype 为原型添加属性。
+然后我们可以通过 new 操作符来创建基于这个原型对象的 Test 实例。使用 new 操作符，只需在调用 Test 函数语句之前添加 new。这样，便可以获得这个函数的一个实例对象。一些属性就可以添加到该原型对象中。
+function Test(){} //创建一个函数 Test.prototype.f1 = `f1` //为该函数原型添加自定义属性 let test1 = new Test() //基于 Test 函数创建函数实例 test1.f1 // &amp;#34;f1&amp;#34; 基于 class 的继承 ECMAScript6 引入了一套新的关键字用来实现 class，它仍然基于原型。
+class Person { constructor(name, age) { this.name = name; this.age = age; } get hello() { console.log(`Hello, my name is ${this.</description>
+    </item>
+    
     <item>
       <title>Promise</title>
       <link>/post/promise/</link>

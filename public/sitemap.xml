@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>/categories/javascript/</loc>
-    <lastmod>2021-06-17T00:00:00+00:00</lastmod>
+    <lastmod>2021-07-14T08:00:00+00:00</lastmod>
   </url><url>
     <loc>/categories/css/</loc>
     <lastmod>2021-03-18T14:00:00+00:00</lastmod>
@@ -12,36 +12,57 @@
     <lastmod>2021-05-01T02:00:00+00:00</lastmod>
   </url><url>
     <loc>/categories/network/</loc>
-    <lastmod>2021-05-22T00:00:00+00:00</lastmod>
+    <lastmod>2021-07-14T08:00:00+00:00</lastmod>
   </url><url>
     <loc>/categories/algorithm/</loc>
     <lastmod>2021-05-25T09:00:00+00:00</lastmod>
   </url><url>
     <loc>/categories/</loc>
-    <lastmod>2021-06-17T00:00:00+00:00</lastmod>
+    <lastmod>2021-07-14T08:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/cors/</loc>
+    <lastmod>2021-07-14T08:00:00+00:00</lastmod>
   </url><url>
     <loc>/</loc>
-    <lastmod>2021-06-17T00:00:00+00:00</lastmod>
+    <lastmod>2021-07-14T08:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/javascript/</loc>
-    <lastmod>2021-06-17T00:00:00+00:00</lastmod>
+    <lastmod>2021-07-14T08:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/post/crossorigin/</loc>
+    <lastmod>2021-07-14T08:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/js/</loc>
-    <lastmod>2021-06-17T00:00:00+00:00</lastmod>
+    <lastmod>2021-07-14T08:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/jsonp/</loc>
+    <lastmod>2021-07-14T08:00:00+00:00</lastmod>
   </url><url>
     <loc>/post/</loc>
-    <lastmod>2021-06-17T00:00:00+00:00</lastmod>
+    <lastmod>2021-07-14T08:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/</loc>
+    <lastmod>2021-07-14T08:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/%E5%89%8D%E7%AB%AF/</loc>
+    <lastmod>2021-07-14T08:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/%E8%B7%A8%E5%9F%9F/</loc>
+    <lastmod>2021-07-14T08:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/%E5%8E%9F%E5%9E%8B/</loc>
+    <lastmod>2021-07-06T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/post/prototypechain/</loc>
+    <lastmod>2021-07-06T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/%E7%BB%A7%E6%89%BF/</loc>
+    <lastmod>2021-07-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/promise/</loc>
     <lastmod>2021-06-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/post/promise/</loc>
-    <lastmod>2021-06-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/tags/</loc>
-    <lastmod>2021-06-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/tags/%E5%89%8D%E7%AB%AF/</loc>
     <lastmod>2021-06-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/%E5%BC%82%E6%AD%A5/</loc>
@@ -105,9 +126,6 @@
     <lastmod>2021-04-03T18:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/object/</loc>
-    <lastmod>2021-04-03T18:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/tags/%E5%8E%9F%E5%9E%8B/</loc>
     <lastmod>2021-04-03T18:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/%E5%AF%B9%E8%B1%A1/</loc>

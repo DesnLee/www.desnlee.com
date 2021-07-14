@@ -6,11 +6,20 @@
     <description>Recent content in Tags on DesnLee</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 17 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 14 Jul 2021 08:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CORS</title>
+      <link>/tags/cors/</link>
+      <pubDate>Wed, 14 Jul 2021 08:00:00 +0000</pubDate>
+      
+      <guid>/tags/cors/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>JavaScript</title>
       <link>/tags/javascript/</link>
-      <pubDate>Thu, 17 Jun 2021 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 14 Jul 2021 08:00:00 +0000</pubDate>
       
       <guid>/tags/javascript/</guid>
       <description></description>
@@ -19,9 +28,54 @@
     <item>
       <title>JS</title>
       <link>/tags/js/</link>
-      <pubDate>Thu, 17 Jun 2021 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 14 Jul 2021 08:00:00 +0000</pubDate>
       
       <guid>/tags/js/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JSONP</title>
+      <link>/tags/jsonp/</link>
+      <pubDate>Wed, 14 Jul 2021 08:00:00 +0000</pubDate>
+      
+      <guid>/tags/jsonp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>前端</title>
+      <link>/tags/%E5%89%8D%E7%AB%AF/</link>
+      <pubDate>Wed, 14 Jul 2021 08:00:00 +0000</pubDate>
+      
+      <guid>/tags/%E5%89%8D%E7%AB%AF/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>跨域</title>
+      <link>/tags/%E8%B7%A8%E5%9F%9F/</link>
+      <pubDate>Wed, 14 Jul 2021 08:00:00 +0000</pubDate>
+      
+      <guid>/tags/%E8%B7%A8%E5%9F%9F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>原型</title>
+      <link>/tags/%E5%8E%9F%E5%9E%8B/</link>
+      <pubDate>Tue, 06 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/%E5%8E%9F%E5%9E%8B/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>继承</title>
+      <link>/tags/%E7%BB%A7%E6%89%BF/</link>
+      <pubDate>Tue, 06 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/%E7%BB%A7%E6%89%BF/</guid>
       <description></description>
     </item>
     
@@ -31,15 +85,6 @@
       <pubDate>Thu, 17 Jun 2021 00:00:00 +0000</pubDate>
       
       <guid>/tags/promise/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>前端</title>
-      <link>/tags/%E5%89%8D%E7%AB%AF/</link>
-      <pubDate>Thu, 17 Jun 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/%E5%89%8D%E7%AB%AF/</guid>
       <description></description>
     </item>
     
@@ -157,15 +202,6 @@
       <pubDate>Sat, 03 Apr 2021 18:00:00 +0000</pubDate>
       
       <guid>/tags/object/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>原型</title>
-      <link>/tags/%E5%8E%9F%E5%9E%8B/</link>
-      <pubDate>Sat, 03 Apr 2021 18:00:00 +0000</pubDate>
-      
-      <guid>/tags/%E5%8E%9F%E5%9E%8B/</guid>
       <description></description>
     </item>
     

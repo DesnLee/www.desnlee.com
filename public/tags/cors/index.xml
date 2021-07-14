@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CORS on DesnLee</title>
+    <link>/tags/cors/</link>
+    <description>Recent content in CORS on DesnLee</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 14 Jul 2021 08:00:00 +0000</lastBuildDate><atom:link href="/tags/cors/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JavaScript 的跨域</title>
+      <link>/post/crossorigin/</link>
+      <pubDate>Wed, 14 Jul 2021 08:00:00 +0000</pubDate>
+      
+      <guid>/post/crossorigin/</guid>
+      <description>什么是同源 如果两个 URL 的 protocol、port(如果有指定的话)和 host 都相同的话，则这两个 URL 是同源。
+同源策略是一个重要的安全策略，它用于限制一个 origin 的文档或者它加载的脚本如何能与另一个源的资源进行交互。它能帮助阻隔恶意文档，减少可能被攻击的媒介。
+例如： 如果 JS 运行在 源A 里，那么就只能获取 源A 的数据，不能获取 源B 的数据，即不允许跨域。
+什么是跨域 同源策略控制不同源之间的交互，例如在使用 XMLHttpRequest 或 &amp;lt;img&amp;gt; 标签时则会受到同源策略的约束。
+这些交互通常分为三类：
+ 跨域写操作（Cross-origin writes）一般是被允许的。例如链接（links），重定向以及表单提交。特定少数的HTTP请求需要添加 preflight。 跨域资源嵌入（Cross-origin embedding）一般是被允许。 跨域读操作（Cross-origin reads）一般是不被允许的，但常可以通过内嵌资源来巧妙的进行读取访问。  跨域就是在不同源之间进行数据交互。
+JSONP 跨域 由于同源策略，一般来说不同源之间无法进行沟通，而 HTML 的 &amp;lt;script&amp;gt; 元素是一个例外。利用 &amp;lt;script&amp;gt; 元素的这个开放策略，网页可以得到从其他来源动态产生的 JSON 资料，而这种使用模式就是所谓的 JSONP。
+举一个具体例子，test1.com 想要访问 test2.com 的数据，
+ 首先 test2.com 先将数据写入一个文件 test2.com/data.js; test1.com 事先定义好一个函数 window.callback ; test1.com 通过 &amp;lt;script&amp;gt; 引用 test2.com/data.js ; 然后 data.</description>
+    </item>
+    
+  </channel>
+</rss>
